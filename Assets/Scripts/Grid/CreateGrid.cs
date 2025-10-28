@@ -20,16 +20,16 @@ public class CreateGrid : MonoBehaviour
                 if (i % 2 == 0)
                 {
                     if (j % 2 == 0)
-                        Instantiate(tile1, new Vector3(j, 0f, i), Quaternion.identity, Grid.transform);
+                        Instantiate(tile1, new Vector3(j, -0.01f, i), Quaternion.identity, Grid.transform);
                     else
-                        Instantiate(tile2, new Vector3(j, 0f, i), Quaternion.identity, Grid.transform);
+                        Instantiate(tile2, new Vector3(j, -0.01f, i), Quaternion.identity, Grid.transform);
                 }
                 else
                 {
                     if (j % 2 == 0)
-                        Instantiate(tile2, new Vector3(j, 0f, i), Quaternion.identity, Grid.transform);
+                        Instantiate(tile2, new Vector3(j, -0.01f, i), Quaternion.identity, Grid.transform);
                     else
-                        Instantiate(tile1, new Vector3(j, 0f, i), Quaternion.identity, Grid.transform);
+                        Instantiate(tile1, new Vector3(j, -0.01f, i), Quaternion.identity, Grid.transform);
                 }
             }
         }
