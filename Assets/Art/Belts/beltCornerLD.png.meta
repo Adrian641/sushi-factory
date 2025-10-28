@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39ce6b530b8f1b449bc0528ced40a61b
+guid: 755b9185e3e3d7b4495f6fc3dd878404
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: beltUD_0
+      name: beltCornerLD_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f81bbb827b77ba42a8016dac039d0b5
-      internalID: 1405826110
+      spriteID: c0d1705f5d4e1fc48b764627dbf99ee1
+      internalID: 177647124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_1
+      name: beltCornerLD_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c15ef904a79e5ab46a2f41f6a8cec886
-      internalID: 1353791186
+      spriteID: 4e6fb694f9c6ddb439414026ffa5c7e3
+      internalID: 1808606995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_2
+      name: beltCornerLD_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf00f6982aa4d954cab22681b133c456
-      internalID: -87420439
+      spriteID: 52ae1a2b9b059c043815d1f4530db28f
+      internalID: -1725183350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_3
+      name: beltCornerLD_3
       rect:
         serializedVersion: 2
         x: 192
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c05b602e52247c4bb3bc89606521bb2
-      internalID: -1751516100
+      spriteID: 21914ba18b8c067418b1a8fe43976562
+      internalID: -1518171109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_4
+      name: beltCornerLD_4
       rect:
         serializedVersion: 2
         x: 256
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81e119322383b3e49a940f4c0f0bb6a8
-      internalID: -1650100897
+      spriteID: 931c070fddb94d04dbe6ed3c258a5e4e
+      internalID: -409172877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_5
+      name: beltCornerLD_5
       rect:
         serializedVersion: 2
         x: 320
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 114cabe99250f6e4f9b519c6bd2461a9
-      internalID: -1765064348
+      spriteID: de57db2c99a639b45a70a6d9fc3856b4
+      internalID: -158323266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_6
+      name: beltCornerLD_6
       rect:
         serializedVersion: 2
         x: 384
@@ -237,8 +237,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 680ccb40bf79152428eac2a604abdf9a
-      internalID: -1981197353
+      spriteID: fea16cb7dba102842ba2e7841f34df23
+      internalID: -1483319979
       vertices: []
       indices: 
       edges: []
@@ -246,7 +246,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ddf48795e7c9de244b7699d34d06fa6d
+    spriteID: 94408133934dcde47bbce7b5ba0d2b39
     internalID: 0
     vertices: []
     indices: 
@@ -254,13 +254,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      beltUD_0: 1405826110
-      beltUD_1: 1353791186
-      beltUD_2: -87420439
-      beltUD_3: -1751516100
-      beltUD_4: -1650100897
-      beltUD_5: -1765064348
-      beltUD_6: -1981197353
+      beltCornerLD_0: 177647124
+      beltCornerLD_1: 1808606995
+      beltCornerLD_2: -1725183350
+      beltCornerLD_3: -1518171109
+      beltCornerLD_4: -409172877
+      beltCornerLD_5: -158323266
+      beltCornerLD_6: -1483319979
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39ce6b530b8f1b449bc0528ced40a61b
+guid: cf6ddf34415cae84ca05e61569d6f6ca
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: beltUD_0
+      name: cutterKnifeLR_sprites_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f81bbb827b77ba42a8016dac039d0b5
-      internalID: 1405826110
+      spriteID: 8d8b764b993cddb408b6cc2ebfaf9fa4
+      internalID: -1770987150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_1
+      name: cutterKnifeLR_sprites_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c15ef904a79e5ab46a2f41f6a8cec886
-      internalID: 1353791186
+      spriteID: 9a445489bcc4ad04d8fa03e7d6e82294
+      internalID: -742878814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_2
+      name: cutterKnifeLR_sprites_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf00f6982aa4d954cab22681b133c456
-      internalID: -87420439
+      spriteID: beced2b82462b2644b37f0f208692ee8
+      internalID: 1795293017
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_3
+      name: cutterKnifeLR_sprites_3
       rect:
         serializedVersion: 2
         x: 192
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c05b602e52247c4bb3bc89606521bb2
-      internalID: -1751516100
+      spriteID: ce5156265b2f46540bd436fc0aee6305
+      internalID: 971563233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_4
+      name: cutterKnifeLR_sprites_4
       rect:
         serializedVersion: 2
         x: 256
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81e119322383b3e49a940f4c0f0bb6a8
-      internalID: -1650100897
+      spriteID: a18a6e0724863314a9c764e73fe9344e
+      internalID: -1682280399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_5
+      name: cutterKnifeLR_sprites_5
       rect:
         serializedVersion: 2
         x: 320
@@ -216,29 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 114cabe99250f6e4f9b519c6bd2461a9
-      internalID: -1765064348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: beltUD_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 680ccb40bf79152428eac2a604abdf9a
-      internalID: -1981197353
+      spriteID: aa60ee7b483aa55499c651db74df6d77
+      internalID: 275612108
       vertices: []
       indices: 
       edges: []
@@ -246,7 +225,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ddf48795e7c9de244b7699d34d06fa6d
+    spriteID: f7f9697f7ce69d44b9cc547584e6be38
     internalID: 0
     vertices: []
     indices: 
@@ -254,13 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      beltUD_0: 1405826110
-      beltUD_1: 1353791186
-      beltUD_2: -87420439
-      beltUD_3: -1751516100
-      beltUD_4: -1650100897
-      beltUD_5: -1765064348
-      beltUD_6: -1981197353
+      cutterKnifeLR_sprites_0: -1770987150
+      cutterKnifeLR_sprites_1: -742878814
+      cutterKnifeLR_sprites_2: 1795293017
+      cutterKnifeLR_sprites_3: 971563233
+      cutterKnifeLR_sprites_4: -1682280399
+      cutterKnifeLR_sprites_5: 275612108
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

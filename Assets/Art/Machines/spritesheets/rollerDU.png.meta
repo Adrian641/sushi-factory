@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39ce6b530b8f1b449bc0528ced40a61b
+guid: 02ededce3f194f84d8c24567800b4a6c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: beltUD_0
+      name: rollerDU_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f81bbb827b77ba42a8016dac039d0b5
-      internalID: 1405826110
+      spriteID: e032c041af71a30439488de52b0694c2
+      internalID: 901700145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_1
+      name: rollerDU_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c15ef904a79e5ab46a2f41f6a8cec886
-      internalID: 1353791186
+      spriteID: 63693a743b2519c429b8d983d77c0b55
+      internalID: -201263486
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_2
+      name: rollerDU_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf00f6982aa4d954cab22681b133c456
-      internalID: -87420439
+      spriteID: 5157c616b3e84754386d64525f8d4804
+      internalID: 1000626136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_3
+      name: rollerDU_3
       rect:
         serializedVersion: 2
         x: 192
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c05b602e52247c4bb3bc89606521bb2
-      internalID: -1751516100
+      spriteID: 226c1a288c3c14a47ac62d805b1dfbaf
+      internalID: 1451235260
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_4
+      name: rollerDU_4
       rect:
         serializedVersion: 2
         x: 256
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81e119322383b3e49a940f4c0f0bb6a8
-      internalID: -1650100897
+      spriteID: 039438b0431b65f459d0272cfbd0fcf8
+      internalID: -1557329070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_5
+      name: rollerDU_5
       rect:
         serializedVersion: 2
         x: 320
@@ -216,29 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 114cabe99250f6e4f9b519c6bd2461a9
-      internalID: -1765064348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: beltUD_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 680ccb40bf79152428eac2a604abdf9a
-      internalID: -1981197353
+      spriteID: fbafc7cbe1245b2479f0c4187104aa4a
+      internalID: 1016962001
       vertices: []
       indices: 
       edges: []
@@ -246,7 +225,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ddf48795e7c9de244b7699d34d06fa6d
+    spriteID: 5f3de093fbd2fcc4ba9eb0e21af0b014
     internalID: 0
     vertices: []
     indices: 
@@ -254,13 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      beltUD_0: 1405826110
-      beltUD_1: 1353791186
-      beltUD_2: -87420439
-      beltUD_3: -1751516100
-      beltUD_4: -1650100897
-      beltUD_5: -1765064348
-      beltUD_6: -1981197353
+      rollerDU_0: 901700145
+      rollerDU_1: -201263486
+      rollerDU_2: 1000626136
+      rollerDU_3: 1451235260
+      rollerDU_4: -1557329070
+      rollerDU_5: 1016962001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

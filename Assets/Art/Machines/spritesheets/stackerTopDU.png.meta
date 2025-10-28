@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39ce6b530b8f1b449bc0528ced40a61b
+guid: c435caaa6058c6f40860244d1d4f102c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: beltUD_0
+      name: stackerTopDU_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f81bbb827b77ba42a8016dac039d0b5
-      internalID: 1405826110
+      spriteID: ec0e2d7a0a376d144af78df253627b0d
+      internalID: 1835381511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_1
+      name: stackerTopDU_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c15ef904a79e5ab46a2f41f6a8cec886
-      internalID: 1353791186
+      spriteID: 24bc06432867ac949a626d9243014fce
+      internalID: 1792664745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_2
+      name: stackerTopDU_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf00f6982aa4d954cab22681b133c456
-      internalID: -87420439
+      spriteID: cc109e314b452ff49b57e669826becb5
+      internalID: 1210611221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_3
+      name: stackerTopDU_3
       rect:
         serializedVersion: 2
         x: 192
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c05b602e52247c4bb3bc89606521bb2
-      internalID: -1751516100
+      spriteID: cb99a92ae91ca2f4691111ed5f520197
+      internalID: -464992071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_4
+      name: stackerTopDU_4
       rect:
         serializedVersion: 2
         x: 256
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81e119322383b3e49a940f4c0f0bb6a8
-      internalID: -1650100897
+      spriteID: a3333e46835bf3d498cd4d8006f2dc9a
+      internalID: 2098939823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: beltUD_5
+      name: stackerTopDU_5
       rect:
         serializedVersion: 2
         x: 320
@@ -216,29 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 114cabe99250f6e4f9b519c6bd2461a9
-      internalID: -1765064348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: beltUD_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 680ccb40bf79152428eac2a604abdf9a
-      internalID: -1981197353
+      spriteID: 05b2ac69c03c2d843a34d11d02a560c6
+      internalID: -778867933
       vertices: []
       indices: 
       edges: []
@@ -246,7 +225,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ddf48795e7c9de244b7699d34d06fa6d
+    spriteID: f4a054b305f2b24478f2c0e2f0f5bad4
     internalID: 0
     vertices: []
     indices: 
@@ -254,13 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      beltUD_0: 1405826110
-      beltUD_1: 1353791186
-      beltUD_2: -87420439
-      beltUD_3: -1751516100
-      beltUD_4: -1650100897
-      beltUD_5: -1765064348
-      beltUD_6: -1981197353
+      stackerTopDU_0: 1835381511
+      stackerTopDU_1: 1792664745
+      stackerTopDU_2: 1210611221
+      stackerTopDU_3: -464992071
+      stackerTopDU_4: 2098939823
+      stackerTopDU_5: -778867933
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
