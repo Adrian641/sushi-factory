@@ -2,12 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 
 public class PlaceConveyors : MonoBehaviour
 {
+    public bool isHoldingLeftShift = false;
+    public bool isHoldingMouse0 = false;
+    public bool isStartClickingMouse0 = false;
+    public bool isReleasingMouse0 = false;
+    public bool toggleFlip = false;
+
+
     public int mousePositionIndex = 0;
     public Vector2[] mousePositions;
     public int arrayLimits = 1000;
@@ -36,22 +44,37 @@ public class PlaceConveyors : MonoBehaviour
     public GameObject PrefabBelt_Right_Up;
     public GameObject PrefabBelt_Right_Down;
 
+    private GameObject ConveyorBelts;
+
     void Start()
     {
         mousePositions = new Vector2[arrayLimits];
+        ConveyorBelts = new GameObject("ConveyorBelts");
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        CheckUsersInputs();
+
+        if (isStartClickingMouse0)
+        {
             SeclectedTileGroup = new GameObject("SelectedTilesGroup");
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+            SeclectedTileGroup.transform.parent = ConveyorBelts.transform;
+        }
+        
+        if (isReleasingMouse0)
         {
             DestroyImmediate(SeclectedTileGroup);
-            conveyorLinePath = CreateConveyorLine(mousePositions, mousePositionIndex);
+
+            if (!isHoldingLeftShift)
+                conveyorLinePath = CreateConveyorLine(mousePositions, mousePositionIndex);
+            else
+                conveyorLinePath = CreateConveyorLine(conveyorLinePath, conveyorLinePath.Length);
+
             if (conveyorLinePath[0] != new Vector2(-1f, -1f))
             {
                 GameObject ConveyorGroup = new GameObject($"conveyorGroup{conveyorGroupNumber}");
+                ConveyorGroup.transform.parent = ConveyorBelts.transform;
                 conveyorGroupNumber++;
                 for (int i = 0; i < conveyorLinePath.Length / 2; i++)
                 {
@@ -62,23 +85,50 @@ public class PlaceConveyors : MonoBehaviour
             }
             PutToZero(mousePositions);
             mousePositionIndex = 0;
+
+            if (toggleFlip)
+                toggleFlip = false;
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) && mousePositionIndex < arrayLimits)
+        if (isHoldingMouse0 && mousePositionIndex < arrayLimits)
         {
             ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RayHit))
             {
                 Hitpoint = new Vector2(MathF.Round(RayHit.point.x), MathF.Round(RayHit.point.z));
+                if (isHoldingLeftShift)
+                {
+                    DestroyImmediate(SeclectedTileGroup);
+                    conveyorLinePath = CreateStraightConveyorLine(mousePositions[0], Hitpoint);
+                    SeclectedTileGroup = new GameObject("SelectedTilesGroup");
+                    SeclectedTileGroup.transform.parent = ConveyorBelts.transform;
+                    HighLightConveyorPath(conveyorLinePath, mousePositionIndex);
+                }
                 if (!mousePositions.Contains(Hitpoint))
                 {
                     mousePositions[mousePositionIndex] = Hitpoint;
-                    Instantiate(SeclectedTile, new Vector3(mousePositions[mousePositionIndex].x, 0f, mousePositions[mousePositionIndex].y), Quaternion.identity, SeclectedTileGroup.transform);
+                    if (!isHoldingLeftShift)
+                        HighLightConveyorPath(mousePositions, mousePositionIndex);
                     mousePositionIndex++;
                 }
             }
         }
     }
+    void HighLightConveyorPath(Vector2[] arrayToHighLight, int arrayIndex)
+    {
+        if (!isHoldingLeftShift)
+        {
+            Instantiate(SeclectedTile, new Vector3(arrayToHighLight[arrayIndex].x, 0f, arrayToHighLight[arrayIndex].y), Quaternion.identity, SeclectedTileGroup.transform);
+        }
+        else if (isHoldingLeftShift)
+        {
+            for (int i = 0; i < arrayToHighLight.Length; i++)
+            {
+                Instantiate(SeclectedTile, new Vector3(arrayToHighLight[i].x, 0f, arrayToHighLight[i].y), Quaternion.identity, SeclectedTileGroup.transform);
+            }
+        }
+    }
+
     Vector2[] CreateConveyorLine(Vector2[] mousePositions, int conveyorLineLength)
     {
         Vector2[] ContinuousConveyorLine = new Vector2[conveyorLineLength * 2];
@@ -86,34 +136,93 @@ public class PlaceConveyors : MonoBehaviour
         Vector2 lastDir = Vector2.zero;
         Vector2 Dir = Vector2.zero;
 
-        for (int i = 0; i < conveyorLineLength; i++)
+        if (conveyorLineLength > 2)
         {
-            lastDir = Dir;
-            if (i + 1 == conveyorLineLength)
+            for (int i = 0; i < conveyorLineLength; i++)
             {
-                ContinuousConveyorLine[i] = mousePositions[i];
+                lastDir = Dir;
+                if (i + 1 == conveyorLineLength)
+                {
+                    ContinuousConveyorLine[i] = mousePositions[i];
+                }
+                else if (mousePositions[i].x == mousePositions[i + 1].x || mousePositions[i].y == mousePositions[i + 1].y)
+                {
+                    ContinuousConveyorLine[i] = mousePositions[i];
+                    ContinuousConveyorLine[i + 1] = mousePositions[i + 1];
+                    Dir = mousePositions[i + 1] - mousePositions[i];
+                    ContinuousConveyorLine[ContinuousConveyorLine.Length / 2 + i] = new Vector2(FindConveyorType(lastDir, Dir), -1f);
+                }
+                else
+                {
+                    ErrorArray[0] = new Vector2(-1f, -1f);
+                    return ErrorArray;
+                }
             }
-            else if (mousePositions[i].x == mousePositions[i + 1].x || mousePositions[i].y == mousePositions[i + 1].y)
-            {
-                ContinuousConveyorLine[i] = mousePositions[i];
-                ContinuousConveyorLine[i + 1] = mousePositions[i + 1];
-                Dir = mousePositions[i + 1] - mousePositions[i];
-                ContinuousConveyorLine[ContinuousConveyorLine.Length / 2 + i] = new Vector2(FindConveyorType(lastDir, Dir), -1f);
-                Debug.Log(FindConveyorType(lastDir, Dir));
-            }
+
+            ContinuousConveyorLine[ContinuousConveyorLine.Length / 2].x = ContinuousConveyorLine[ContinuousConveyorLine.Length / 2 + 1].x % 10;
+
+            if (ContinuousConveyorLine[ContinuousConveyorLine.Length - 2].x > 10 && ContinuousConveyorLine.Length >= 2)
+                ContinuousConveyorLine[ContinuousConveyorLine.Length - 1] = new Vector2((ContinuousConveyorLine[ContinuousConveyorLine.Length - 2].x / 10) - ((ContinuousConveyorLine[ContinuousConveyorLine.Length - 2].x % 10) / 10), -1f);
             else
+                ContinuousConveyorLine[ContinuousConveyorLine.Length - 1] = new Vector2(ContinuousConveyorLine[ContinuousConveyorLine.Length - 2].x, -1f);
+        }
+        else if (conveyorLineLength == 2)
+        {
+            ContinuousConveyorLine[0] = mousePositions[0];
+            ContinuousConveyorLine[1] = mousePositions[1];
+            Dir = mousePositions[1] - mousePositions[0];
+            ContinuousConveyorLine[2] = new Vector2(FindConveyorType(Dir, Dir), -1f);
+            ContinuousConveyorLine[3] = ContinuousConveyorLine[2];
+        }
+        else if (conveyorLineLength == 1)
+        {
+            ContinuousConveyorLine[0] = mousePositions[0];
+            ContinuousConveyorLine[1] = new Vector2(1f, -1f);
+        }
+
+        return ContinuousConveyorLine;
+    }
+    Vector2[] CreateStraightConveyorLine(Vector2 AnchorPoint, Vector2 HitPoint)
+    {
+        Vector2[] ConveyorLine = { };
+        Vector2[] ConveyorLineTypes = { };
+
+        int conveyorSize = (int)(MathF.Abs(HitPoint.x - AnchorPoint.x) + MathF.Abs(HitPoint.y - AnchorPoint.y) + 1);
+        ConveyorLine = new Vector2[conveyorSize];
+        ConveyorLine[0] = AnchorPoint;
+
+        if (toggleFlip)
+        {
+            for (int i = 1; i < conveyorSize; i++)
             {
-                ErrorArray[0] = new Vector2(-1f, -1f);
-                return ErrorArray;
+                if (ConveyorLine[i - 1].y! < Hitpoint.y)
+                    ConveyorLine[i] = new Vector2(AnchorPoint.x, AnchorPoint.y + i);
+                else if (ConveyorLine[i - 1].y! > Hitpoint.y)
+                    ConveyorLine[i] = new Vector2(AnchorPoint.x, AnchorPoint.y - i);
+                else if (ConveyorLine[i - 1].x! < Hitpoint.x)
+                    ConveyorLine[i] = new Vector2(ConveyorLine[i - 1].x + 1, Hitpoint.y);
+                else if (ConveyorLine[i - 1].x! > Hitpoint.x)
+                    ConveyorLine[i] = new Vector2(ConveyorLine[i - 1].x - 1, Hitpoint.y);
             }
         }
-        ContinuousConveyorLine[ContinuousConveyorLine.Length / 2].x = ContinuousConveyorLine[ContinuousConveyorLine.Length / 2 + 1].x % 10;
-        ContinuousConveyorLine[ContinuousConveyorLine.Length - 1] = new Vector2(Mathf.Round(ContinuousConveyorLine[ContinuousConveyorLine.Length - 2].x % 10), -1f);
-        return ContinuousConveyorLine;
-
+        else
+        {
+            for (int i = 1; i < conveyorSize; i++)
+            {
+                if (ConveyorLine[i - 1].x! < Hitpoint.x)
+                    ConveyorLine[i] = new Vector2(AnchorPoint.x + i, AnchorPoint.y);
+                else if (ConveyorLine[i - 1].x! > Hitpoint.x)
+                    ConveyorLine[i] = new Vector2(AnchorPoint.x - i, AnchorPoint.y);
+                else if (ConveyorLine[i - 1].y! < Hitpoint.y)
+                    ConveyorLine[i] = new Vector2(Hitpoint.x, ConveyorLine[i - 1].y + 1);
+                else if (ConveyorLine[i - 1].y! > Hitpoint.y)
+                    ConveyorLine[i] = new Vector2(Hitpoint.x, ConveyorLine[i - 1].y - 1);
+            }
+        }
+        return ConveyorLine;
     }
 
-    int FindConveyorType(Vector2 lastDir,  Vector2 dir)
+    int FindConveyorType(Vector2 lastDir, Vector2 dir)
     {
         if (lastDir == Vector2.zero)
             return 0;
@@ -179,6 +288,34 @@ public class PlaceConveyors : MonoBehaviour
             PrefabToSpawn = PrefabBelt_Right_Down;
 
         GameObject ConveyerSprite = Instantiate(PrefabToSpawn, new Vector3(pos.x, 0f, pos.y), Quaternion.Euler(90f, 0f, 0f), parent.transform);
-        
+
+    }
+
+    void CheckUsersInputs()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+            isHoldingLeftShift = true;
+        else
+            isHoldingLeftShift = false;
+        if (Input.GetKey(KeyCode.Mouse0))
+            isHoldingMouse0 = true;
+        else
+            isHoldingMouse0 = false;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            isStartClickingMouse0 = true;
+        else
+            isStartClickingMouse0 = false;
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+            isReleasingMouse0 = true;
+        else
+            isReleasingMouse0 = false;
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (!toggleFlip)
+                toggleFlip = true;
+            else if (toggleFlip)
+                toggleFlip = false;
+        }
     }
 }

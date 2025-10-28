@@ -166,6 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec47630f386c8d94eb2d5e7226649621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHoldingLeftShift: 0
+  isHoldingMouse0: 0
+  isStartClickingMouse0: 0
+  isReleasingMouse0: 0
+  toggleFlip: 0
   mousePositionIndex: 0
   mousePositions:
   - {x: 0, y: 0}
@@ -274,18 +279,18 @@ MonoBehaviour:
   SeclectedTile: {fileID: 7818943859801871519, guid: 9c0f1209d3895df4da1062acca9740f1, type: 3}
   conveyorLinePath: []
   conveyorGroupNumber: 0
-  PrefabBelt_Up: {fileID: 6960395956089341982, guid: b9bc5192783fbbf4b9ffbdda4d7ebe59, type: 3}
-  PrefabBelt_Down: {fileID: 8115703481879560809, guid: 2ae982cece301634e817043a397d8cea, type: 3}
-  PrefabBelt_Left: {fileID: 4669832817295610021, guid: 4d48a1be7670d424dabffb85f389db6d, type: 3}
-  PrefabBelt_Right: {fileID: 5570493505052588574, guid: e04ba293b7fbcf54c924157e7ad3f084, type: 3}
-  PrefabBelt_Up_Left: {fileID: 2252067011733411686, guid: 559dbbcab3968b143843460d66f74d20, type: 3}
-  PrefabBelt_Up_Right: {fileID: 4061894546850316293, guid: 01a0132e7e44679419e53c4645c141bf, type: 3}
-  PrefabBelt_Down_Left: {fileID: 1188745469328926760, guid: 4d8c209355fd38e4a964cd2d1369b4a3, type: 3}
-  PrefabBelt_Down_Right: {fileID: 8290769095764493283, guid: 9d23ec596b362474ca3c69d554f5325d, type: 3}
-  PrefabBelt_Left_Up: {fileID: 3240560741714607419, guid: df50e9b26e69c2f4f89f57c2957fb899, type: 3}
-  PrefabBelt_Left_Down: {fileID: 189769757905308938, guid: a82bbb90321021e43b8763e6d68f0b45, type: 3}
-  PrefabBelt_Right_Up: {fileID: 3088589560610669939, guid: f20290e95f5ed4f4181a10c7bc062917, type: 3}
-  PrefabBelt_Right_Down: {fileID: 3906593073716557157, guid: 4878015d67595fa46a3609a712bec9be, type: 3}
+  PrefabBelt_Up: {fileID: 6960395956089341982, guid: c635db86048bb2c42bec334ebb06950e, type: 3}
+  PrefabBelt_Down: {fileID: 8115703481879560809, guid: c0578ccb3a11b284aaf2c62a04bc2e09, type: 3}
+  PrefabBelt_Left: {fileID: 4669832817295610021, guid: b758d57650f8e4d4787f9d037c34a0b0, type: 3}
+  PrefabBelt_Right: {fileID: 5570493505052588574, guid: 4075916a75cbd46498211bd9b92c4b5b, type: 3}
+  PrefabBelt_Up_Left: {fileID: 2252067011733411686, guid: 35bb98544b50b4e4cbc2ca8ccc2dee45, type: 3}
+  PrefabBelt_Up_Right: {fileID: 4061894546850316293, guid: 5ad4cd530f8817c4180a386d345e60bc, type: 3}
+  PrefabBelt_Down_Left: {fileID: 1188745469328926760, guid: 2f06aaf178d45d74e87f30664086f955, type: 3}
+  PrefabBelt_Down_Right: {fileID: 8290769095764493283, guid: 2b45223e1d72dff4197988871625ff0c, type: 3}
+  PrefabBelt_Left_Up: {fileID: 3240560741714607419, guid: 8647d4a8eabb7e34dbe17351cd29344c, type: 3}
+  PrefabBelt_Left_Down: {fileID: 189769757905308938, guid: a140109018791ed4b8dffa6f0da20379, type: 3}
+  PrefabBelt_Right_Up: {fileID: 2297742567333149678, guid: 9bb118c53b5bfab40a218c8ea13bf7fd, type: 3}
+  PrefabBelt_Right_Down: {fileID: 8468668606841036651, guid: 5205efa98def940449b234daced44c9c, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
