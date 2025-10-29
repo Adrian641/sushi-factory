@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0337786668fa74893a025d0325d9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conveyors: {fileID: 0}
 --- !u!114 &1143979225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +371,7 @@ MonoBehaviour:
   isStartClickingMouse0: 0
   isReleasingMouse0: 0
   toggleFlip: 0
+  isHandling: 0
   mousePositionIndex: 0
   mousePositions:
   - {x: 0, y: 0}
