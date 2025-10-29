@@ -15,6 +15,7 @@ public class PlaceConveyors : MonoBehaviour
     public bool isReleasingMouse0 = false;
     public bool toggleFlip = false;
 
+    public bool isHandling = false;
 
     public int mousePositionIndex = 0;
     public Vector2[] mousePositions;
@@ -77,7 +78,7 @@ public class PlaceConveyors : MonoBehaviour
                 conveyorGroupNumber++;
                 for (int i = 0; i < conveyorLinePath.Length / 2; i++)
                 {
-                    GameObject ConveyerPos = new GameObject($"{conveyorLinePath[i].x}, {conveyorLinePath[i].y}");
+                    GameObject ConveyerPos = new GameObject($"{conveyorLinePath[i].x},{conveyorLinePath[i].y}");
                     ConveyerPos.transform.parent = ConveyorGroup.transform;
                     InstantiateBelt(conveyorLinePath[conveyorLinePath.Length / 2 + i].x, ConveyerPos, conveyorLinePath[i]);
                 }
@@ -87,6 +88,7 @@ public class PlaceConveyors : MonoBehaviour
 
             if (toggleFlip)
                 toggleFlip = false;
+            isHandling = true;
         }
 
         if (isHoldingMouse0 && mousePositionIndex < arrayLimits)

@@ -122,176 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &65512500
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 65512501}
-  - component: {fileID: 65512502}
-  m_Layer: 0
-  m_Name: ConveyerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &65512501
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65512500}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.03, y: -8.25, z: -1.67}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &65512502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65512500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec47630f386c8d94eb2d5e7226649621, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isHoldingLeftShift: 0
-  isHoldingMouse0: 0
-  isStartClickingMouse0: 0
-  isReleasingMouse0: 0
-  toggleFlip: 0
-  mousePositionIndex: 0
-  mousePositions:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  arrayLimits: 1000
-  mainCam: {fileID: 963194227}
-  Hitpoint: {x: 0, y: 0}
-  SeclectedTile: {fileID: 7818943859801871519, guid: 9c0f1209d3895df4da1062acca9740f1, type: 3}
-  conveyorLinePath: []
-  conveyorGroupNumber: 0
-  PrefabBelt_Up: {fileID: 6960395956089341982, guid: c635db86048bb2c42bec334ebb06950e, type: 3}
-  PrefabBelt_Down: {fileID: 8115703481879560809, guid: c0578ccb3a11b284aaf2c62a04bc2e09, type: 3}
-  PrefabBelt_Left: {fileID: 4669832817295610021, guid: b758d57650f8e4d4787f9d037c34a0b0, type: 3}
-  PrefabBelt_Right: {fileID: 5570493505052588574, guid: 4075916a75cbd46498211bd9b92c4b5b, type: 3}
-  PrefabBelt_Up_Left: {fileID: 2252067011733411686, guid: 35bb98544b50b4e4cbc2ca8ccc2dee45, type: 3}
-  PrefabBelt_Up_Right: {fileID: 4061894546850316293, guid: 5ad4cd530f8817c4180a386d345e60bc, type: 3}
-  PrefabBelt_Down_Left: {fileID: 1188745469328926760, guid: 2f06aaf178d45d74e87f30664086f955, type: 3}
-  PrefabBelt_Down_Right: {fileID: 8290769095764493283, guid: 2b45223e1d72dff4197988871625ff0c, type: 3}
-  PrefabBelt_Left_Up: {fileID: 3240560741714607419, guid: 8647d4a8eabb7e34dbe17351cd29344c, type: 3}
-  PrefabBelt_Left_Down: {fileID: 189769757905308938, guid: a140109018791ed4b8dffa6f0da20379, type: 3}
-  PrefabBelt_Right_Up: {fileID: 2297742567333149678, guid: 9bb118c53b5bfab40a218c8ea13bf7fd, type: 3}
-  PrefabBelt_Right_Down: {fileID: 8468668606841036651, guid: 5205efa98def940449b234daced44c9c, type: 3}
-  ConveyorBelts: {fileID: 1143979222}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +317,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1143979223}
+  - component: {fileID: 1143979225}
+  - component: {fileID: 1143979224}
   m_Layer: 0
   m_Name: ConveyorBelts
   m_TagString: Untagged
@@ -509,6 +341,156 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1143979224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143979222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0337786668fa74893a025d0325d9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1143979225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143979222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec47630f386c8d94eb2d5e7226649621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHoldingLeftShift: 0
+  isHoldingMouse0: 0
+  isStartClickingMouse0: 0
+  isReleasingMouse0: 0
+  toggleFlip: 0
+  mousePositionIndex: 0
+  mousePositions:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  arrayLimits: 1000
+  mainCam: {fileID: 963194227}
+  Hitpoint: {x: 0, y: 0}
+  SeclectedTile: {fileID: 7818943859801871519, guid: 9c0f1209d3895df4da1062acca9740f1, type: 3}
+  conveyorLinePath: []
+  conveyorGroupNumber: 0
+  PrefabBelt_Up: {fileID: 6960395956089341982, guid: c635db86048bb2c42bec334ebb06950e, type: 3}
+  PrefabBelt_Down: {fileID: 8115703481879560809, guid: c0578ccb3a11b284aaf2c62a04bc2e09, type: 3}
+  PrefabBelt_Left: {fileID: 4669832817295610021, guid: b758d57650f8e4d4787f9d037c34a0b0, type: 3}
+  PrefabBelt_Right: {fileID: 5570493505052588574, guid: 4075916a75cbd46498211bd9b92c4b5b, type: 3}
+  PrefabBelt_Up_Left: {fileID: 2252067011733411686, guid: 35bb98544b50b4e4cbc2ca8ccc2dee45, type: 3}
+  PrefabBelt_Up_Right: {fileID: 4061894546850316293, guid: 5ad4cd530f8817c4180a386d345e60bc, type: 3}
+  PrefabBelt_Down_Left: {fileID: 1188745469328926760, guid: 2f06aaf178d45d74e87f30664086f955, type: 3}
+  PrefabBelt_Down_Right: {fileID: 8290769095764493283, guid: 2b45223e1d72dff4197988871625ff0c, type: 3}
+  PrefabBelt_Left_Up: {fileID: 3240560741714607419, guid: 8647d4a8eabb7e34dbe17351cd29344c, type: 3}
+  PrefabBelt_Left_Down: {fileID: 189769757905308938, guid: a140109018791ed4b8dffa6f0da20379, type: 3}
+  PrefabBelt_Right_Up: {fileID: 2297742567333149678, guid: 9bb118c53b5bfab40a218c8ea13bf7fd, type: 3}
+  PrefabBelt_Right_Down: {fileID: 8468668606841036651, guid: 5205efa98def940449b234daced44c9c, type: 3}
+  ConveyorBelts: {fileID: 1143979222}
 --- !u!1 &1342392960
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +651,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 65512501}
   - {fileID: 1342392961}
   - {fileID: 1636574365}
   - {fileID: 1143979223}
