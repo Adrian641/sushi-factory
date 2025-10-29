@@ -14,6 +14,7 @@ public class PlaceConveyors : MonoBehaviour
     public bool isStartClickingMouse0 = false;
     public bool isReleasingMouse0 = false;
     public bool toggleFlip = false;
+    public bool isHoldingMouse1 = false;
 
     public bool isHandling = false;
 
@@ -61,7 +62,7 @@ public class PlaceConveyors : MonoBehaviour
             SeclectedTileGroup = new GameObject("SelectedTilesGroup");
             SeclectedTileGroup.transform.parent = ConveyorBelts.transform;
         }
-        
+
         if (isReleasingMouse0)
         {
             DestroyImmediate(SeclectedTileGroup);
@@ -78,7 +79,7 @@ public class PlaceConveyors : MonoBehaviour
                 conveyorGroupNumber++;
                 for (int i = 0; i < conveyorLinePath.Length / 2; i++)
                 {
-                    GameObject ConveyerPos = new GameObject($"{conveyorLinePath[i].x},{conveyorLinePath[i].y}");
+                    GameObject ConveyerPos = new GameObject($"{conveyorLinePath[i].x},{conveyorLinePath[i].y},");
                     ConveyerPos.transform.parent = ConveyorGroup.transform;
                     InstantiateBelt(conveyorLinePath[conveyorLinePath.Length / 2 + i].x, ConveyerPos, conveyorLinePath[i]);
                 }
@@ -91,27 +92,30 @@ public class PlaceConveyors : MonoBehaviour
             isHandling = true;
         }
 
-        if (isHoldingMouse0 && mousePositionIndex < arrayLimits)
+        if (isHoldingMouse0 || isHoldingMouse1)
         {
             ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RayHit))
-            {
                 Hitpoint = new Vector2(MathF.Round(RayHit.point.x), MathF.Round(RayHit.point.z));
-                if (isHoldingLeftShift)
-                {
-                    DestroyImmediate(SeclectedTileGroup);
-                    conveyorLinePath = CreateStraightConveyorLine(mousePositions[0], Hitpoint);
-                    SeclectedTileGroup = new GameObject("SelectedTilesGroup");
-                    SeclectedTileGroup.transform.parent = ConveyorBelts.transform;
-                    HighLightConveyorPath(conveyorLinePath, mousePositionIndex);
-                }
-                if (!mousePositions.Contains(Hitpoint))
-                {
-                    mousePositions[mousePositionIndex] = Hitpoint;
-                    if (!isHoldingLeftShift)
-                        HighLightConveyorPath(mousePositions, mousePositionIndex);
-                    mousePositionIndex++;
-                }
+        }
+
+        if (isHoldingMouse0 && mousePositionIndex < arrayLimits)
+        {
+
+            if (isHoldingLeftShift)
+            {
+                DestroyImmediate(SeclectedTileGroup);
+                conveyorLinePath = CreateStraightConveyorLine(mousePositions[0], Hitpoint);
+                SeclectedTileGroup = new GameObject("SelectedTilesGroup");
+                SeclectedTileGroup.transform.parent = ConveyorBelts.transform;
+                HighLightConveyorPath(conveyorLinePath, mousePositionIndex);
+            }
+            if (!mousePositions.Contains(Hitpoint))
+            {
+                mousePositions[mousePositionIndex] = Hitpoint;
+                if (!isHoldingLeftShift)
+                    HighLightConveyorPath(mousePositions, mousePositionIndex);
+                mousePositionIndex++;
             }
         }
     }
@@ -318,5 +322,10 @@ public class PlaceConveyors : MonoBehaviour
             else if (toggleFlip)
                 toggleFlip = false;
         }
+
+        if (Input.GetKey(KeyCode.Mouse1))
+            isHoldingMouse1 = true;
+        else
+            isHoldingMouse1 = false;
     }
 }
