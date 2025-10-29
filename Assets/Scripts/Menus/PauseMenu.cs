@@ -8,10 +8,18 @@ public class PauseMenu : MonoBehaviour
     public static  bool GameIsPaused = false;
     public GameObject pauseMenuUI;
 
+    AudioManager AudioManager;
+
+    private void Awake()
+    {
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            AudioManager.PlaySFX(AudioManager.UIclick);
             if (GameIsPaused)
             {
                 Resume();
