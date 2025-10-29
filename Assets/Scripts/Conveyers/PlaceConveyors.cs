@@ -44,12 +44,11 @@ public class PlaceConveyors : MonoBehaviour
     public GameObject PrefabBelt_Right_Up;
     public GameObject PrefabBelt_Right_Down;
 
-    private GameObject ConveyorBelts;
+    public GameObject ConveyorBelts;
 
     void Start()
     {
         mousePositions = new Vector2[arrayLimits];
-        ConveyorBelts = new GameObject("ConveyorBelts");
     }
 
     void Update()

@@ -291,6 +291,7 @@ MonoBehaviour:
   PrefabBelt_Left_Down: {fileID: 189769757905308938, guid: a140109018791ed4b8dffa6f0da20379, type: 3}
   PrefabBelt_Right_Up: {fileID: 2297742567333149678, guid: 9bb118c53b5bfab40a218c8ea13bf7fd, type: 3}
   PrefabBelt_Right_Down: {fileID: 8468668606841036651, guid: 5205efa98def940449b234daced44c9c, type: 3}
+  ConveyorBelts: {fileID: 1143979222}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +478,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 64.149, y: 0, z: 0}
+--- !u!1 &1143979222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143979223}
+  m_Layer: 0
+  m_Name: ConveyorBelts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1143979223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143979222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.03, y: -8.25, z: -1.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342392960
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,3 +672,4 @@ SceneRoots:
   - {fileID: 65512501}
   - {fileID: 1342392961}
   - {fileID: 1636574365}
+  - {fileID: 1143979223}
