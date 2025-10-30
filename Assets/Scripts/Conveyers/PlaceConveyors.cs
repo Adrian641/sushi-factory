@@ -33,6 +33,8 @@ public class PlaceConveyors : MonoBehaviour
     public Vector2[] conveyorLinePath;
     public int conveyorGroupNumber = 0;
 
+    LayerMask beltLayer;
+
     public GameObject PrefabBelt_Up;
     public GameObject PrefabBelt_Down;
     public GameObject PrefabBelt_Left;
@@ -72,24 +74,29 @@ public class PlaceConveyors : MonoBehaviour
             else
                 conveyorLinePath = CreateConveyorLine(conveyorLinePath, conveyorLinePath.Length);
 
-            if (conveyorLinePath[0] != new Vector2(-1f, -1f))
+            if(conveyorLinePath != null)
             {
-                GameObject ConveyorGroup = new GameObject($"conveyorGroup{conveyorGroupNumber}");
-                ConveyorGroup.transform.parent = ConveyorBelts.transform;
-                conveyorGroupNumber++;
-                for (int i = 0; i < conveyorLinePath.Length / 2; i++)
+                DeleteObjects(conveyorLinePath);
+                if (conveyorLinePath[0] != new Vector2(-1f, -1f))
                 {
-                    GameObject ConveyerPos = new GameObject($"{conveyorLinePath[i].x},{conveyorLinePath[i].y},");
-                    ConveyerPos.transform.parent = ConveyorGroup.transform;
-                    InstantiateBelt(conveyorLinePath[conveyorLinePath.Length / 2 + i].x, ConveyerPos, conveyorLinePath[i]);
+                    GameObject ConveyorGroup = new GameObject($"conveyorGroup{conveyorGroupNumber}");
+                    ConveyorGroup.transform.parent = ConveyorBelts.transform;
+                    conveyorGroupNumber++;
+                    for (int i = 0; i < conveyorLinePath.Length / 2; i++)
+                    {
+                    
+                        GameObject ConveyerPos = new GameObject($"{conveyorLinePath[i].x},{conveyorLinePath[i].y},");
+                        ConveyerPos.transform.parent = ConveyorGroup.transform;
+                        InstantiateBelt(conveyorLinePath[conveyorLinePath.Length / 2 + i].x, ConveyerPos, conveyorLinePath[i]);
+                    }
                 }
-            }
-            PutToZero(mousePositions);
-            mousePositionIndex = 0;
+                PutToZero(mousePositions);
+                mousePositionIndex = 0;
 
-            if (toggleFlip)
-                toggleFlip = false;
-            isHandling = true;
+                if (toggleFlip)
+                    toggleFlip = false;
+                isHandling = true;
+            }
         }
 
         if (isHoldingMouse0 || isHoldingMouse1)
@@ -118,6 +125,8 @@ public class PlaceConveyors : MonoBehaviour
                 mousePositionIndex++;
             }
         }
+        if (isHoldingMouse1)
+            DeleteObjects();
     }
     void HighLightConveyorPath(Vector2[] arrayToHighLight, int arrayIndex)
     {
@@ -227,6 +236,47 @@ public class PlaceConveyors : MonoBehaviour
         return ConveyorLine;
     }
 
+    public void DeleteObjects()
+    {
+        
+        if (Physics.Raycast(ray, out RayHit))
+        {
+            GameObject hit = RayHit.transform.gameObject;
+            if (hit.layer != beltLayer)
+            {
+                GameObject hitParent = hit.transform.parent.gameObject;
+                Destroy(hitParent);
+                isHandling = true;
+            }
+        }
+    }
+    public void DeleteObjects(Vector2[] Pos)
+    {
+        for (int i = 0; i < Pos.Length; i++)
+        {
+            if (Physics.Raycast(new Vector3(Pos[i].x, 0.5f, Pos[i].y), Vector3.down, out RayHit))
+            {
+                GameObject hit = RayHit.transform.gameObject;
+                if (hit.layer != beltLayer)
+                {
+                    GameObject hitParent = hit.transform.parent.gameObject;
+                    Destroy(hitParent);
+                    isHandling = true;
+                }
+            }
+        }
+    }
+
+    public bool AlreadyContained(Vector2[] array, Vector2 value, int currentArrayLength)
+    {
+        for (int i = 0; i < array.Length - currentArrayLength; i++)
+        {
+            if (array[i] == value)
+                return true;
+        }
+        return false;
+    }
+
     int FindConveyorType(Vector2 lastDir, Vector2 dir)
     {
         if (lastDir == Vector2.zero)
@@ -266,7 +316,7 @@ public class PlaceConveyors : MonoBehaviour
 
     void InstantiateBelt(float beltCode, GameObject parent, Vector2 pos)
     {
-        GameObject PrefabToSpawn = null;
+        GameObject PrefabToSpawn;
         if (beltCode == 1)
             PrefabToSpawn = PrefabBelt_Up;
         else if (beltCode == 2)
@@ -291,6 +341,8 @@ public class PlaceConveyors : MonoBehaviour
             PrefabToSpawn = PrefabBelt_Right_Up;
         else if (beltCode == 24)
             PrefabToSpawn = PrefabBelt_Right_Down;
+        else
+            PrefabToSpawn = PrefabBelt_Up;
 
         GameObject ConveyerSprite = Instantiate(PrefabToSpawn, new Vector3(pos.x, 0f, pos.y), Quaternion.Euler(90f, 0f, 0f), parent.transform);
 
