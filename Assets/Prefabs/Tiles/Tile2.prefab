@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8435204058125774617}
   - component: {fileID: 1096953067693875025}
   - component: {fileID: 8578707370871688862}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Tile2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,5 +104,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.64, y: 0.64000016, z: 0.20000005}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.5759754, y: 2.569223, z: 0.20000005}
+  m_Center: {x: -0.0058479607, y: 0.002910122, z: -1.6101997e-18}
