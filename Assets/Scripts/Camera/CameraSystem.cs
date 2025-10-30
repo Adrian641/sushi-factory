@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraSystem : MonoBehaviour
 {
+    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private float fieldOfViewMax = 80f;
+    [SerializeField] private float fieldOfViewMin = 30f;
+    private float targetFieldOfView = 60f;
+
     private void Update()
     {
         Vector3 inputDir = new Vector3(0, 0, 0);
@@ -17,15 +23,23 @@ public class CameraSystem : MonoBehaviour
         float moveSpeed = 5f;
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
-        float rotateDir = 0f;
+        float rotateDirX = 0f;
+        float rotateDirY = 0f;
         float sensitivity = 10f;
         if (Input.GetKey(KeyCode.Mouse2))
         {
-            rotateDir += Input.GetAxis("Mouse X") * sensitivity;
-            Debug.Log(rotateDir);
+            rotateDirX += Input.GetAxis("Mouse X") * sensitivity;
+            //Debug.Log(rotateDirX);
+
+            rotateDirY += Input.GetAxis("Mouse Y") * sensitivity;
+            Debug.Log(rotateDirY);
         }
 
-        transform.Rotate(Vector3.up, rotateDir * sensitivity * Time.deltaTime);
+        transform.Rotate(Vector3.up, rotateDirX * sensitivity * Time.deltaTime);
+
+        HandleCameraZoom();
+
+
 
         //please please help i dont understand anything about this T-T
         //the whole normal moving part works and it would work with the Q and E input but idk how to put a mouse input instead of it T-T
@@ -39,5 +53,20 @@ public class CameraSystem : MonoBehaviour
 
 
 
+    }
+
+    private void HandleCameraZoom()
+    {
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            targetFieldOfView += 5f;
+        }
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            targetFieldOfView -= 5f;
+        }
+
+        targetFieldOfView = Mathf.Clamp(targetFieldOfView, fieldOfViewMin, fieldOfViewMax);
+        cinemachineVirtualCamera.m_Lens.FieldOfView = targetFieldOfView;
     }
 }
