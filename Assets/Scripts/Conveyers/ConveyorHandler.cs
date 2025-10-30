@@ -13,7 +13,7 @@ public class ConveyorHandler : MonoBehaviour
     Transform conveyorBelts;
 
     int numberConveyorGroups = 0;
-    int currentConveyorGroupsLength = 0;
+    public int currentConveyorGroupsLength = 0;
     int allConveyorsNb = 0;
     public Vector2[] start;
     public Vector2[] end;
@@ -24,6 +24,9 @@ public class ConveyorHandler : MonoBehaviour
     public Vector2 Hitpoint = Vector2.zero;
 
     public Vector2[] beltPositions;
+
+    Vector2[] allPos = { };
+
 
     void Start()
     {
@@ -38,21 +41,37 @@ public class ConveyorHandler : MonoBehaviour
             numberConveyorGroups = conveyorBelts.childCount;
             for (int i = 0; i < numberConveyorGroups; i++)
             {
-                beltPositions = DecriptConveyorBelts(numberConveyorGroups, i);
-                Deconstruct(beltPositions, i);
-                allConveyorsNb += currentConveyorGroupsLength;
-                MergeBeltGroups(beltPositions, i, currentConveyorGroupsLength, allConveyorsNb);
+                Transform conveyorGroupX = conveyorBelts.transform.GetChild(i);
+                int conveyorGroupXNbChild = conveyorGroupX.childCount;
+                if (conveyorGroupXNbChild == 0)
+                {
+                    DestroyImmediate(conveyorGroupX.gameObject);
+                }
+                else
+                {
+                    Transform posChild = conveyorGroupX.transform.GetChild(0);
+                    if (posChild.childCount == 0)
+                    {
+                        DestroyImmediate(conveyorGroupX.gameObject);
+                    }
+                    else
+                    {
+                        beltPositions = DecriptConveyorBelts(numberConveyorGroups, i);
+                        Deconstruct(beltPositions, i);
+                        allConveyorsNb += currentConveyorGroupsLength;
+                        //MergeBeltGroups(beltPositions, i, currentConveyorGroupsLength, allConveyorsNb);
+                    }
+                }
+                numberConveyorGroups = conveyorBelts.childCount;
             }
-            //Debug.Log(allConveyorsNb);
+            beltPositions = new Vector2[currentConveyorGroupsLength];
+            allPos = Append(allPos, beltPositions);
+
             conveyors.isHandling = false;
             allConveyorsNb = 0;
 
             start = new Vector2[1];
             end = new Vector2[1];
-        }
-        if (conveyors.isHoldingMouse1)
-        {
-            DeleteObjects(beltPositions);
         }
     }
 
@@ -65,35 +84,38 @@ public class ConveyorHandler : MonoBehaviour
         Transform conveyorGroupX = conveyorBelts.transform.GetChild(i);
         int conveyorGroupXNbChild = conveyorGroupX.childCount;
 
-        for (int j = 0; j < conveyorGroupXNbChild; j++)
+        if (conveyorGroupXNbChild == 0)
+            DestroyImmediate(conveyorGroupX.gameObject);
+
+        if (conveyorGroupXNbChild > 0)
         {
-            Transform BeltsTransform = conveyorGroupX.transform.GetChild(j);
-            GameObject BeltsGameObject = BeltsTransform.gameObject;
-            BeltName = BeltsGameObject.name;
-            for (int k = 0; k < BeltName.Length; k++)
+            for (int j = 0; j < conveyorGroupXNbChild; j++)
             {
-                if (Char.IsDigit(BeltName[k]))
+                Transform BeltsTransform = conveyorGroupX.transform.GetChild(j);
+                GameObject BeltsGameObject = BeltsTransform.gameObject;
+                BeltName = BeltsGameObject.name;
+                for (int k = 0; k < BeltName.Length; k++)
                 {
-                    component += BeltName[k];
-                }
-                else if (isFirstComponent)
-                {
-                    //Debug.Log(component);
-                    allActiveBelts[j].x = int.Parse(component);
-                    component = "";
-                    isFirstComponent = false;
-                }
-                else
-                {
-                    //Debug.Log(component);
-                    allActiveBelts[j].y = int.Parse(component);
-                    component = "";
-                    isFirstComponent = true;
+                    if (Char.IsDigit(BeltName[k]))
+                    {
+                        component += BeltName[k];
+                    }
+                    else if (isFirstComponent)
+                    {
+                        allActiveBelts[j].x = int.Parse(component);
+                        component = "";
+                        isFirstComponent = false;
+                    }
+                    else
+                    {
+                        allActiveBelts[j].y = int.Parse(component);
+                        component = "";
+                        isFirstComponent = true;
+                    }
                 }
             }
-            //Debug.Log(allActiveBelts[j]);
+            currentConveyorGroupsLength = conveyorGroupXNbChild;
         }
-        currentConveyorGroupsLength = conveyorGroupXNbChild;
         return allActiveBelts;
     }
 
@@ -101,18 +123,39 @@ public class ConveyorHandler : MonoBehaviour
     {
         Transform conveyorGroupX = conveyorBelts.transform.GetChild(counter);
         int conveyorGroupXNbChild = conveyorGroupX.childCount;
-        GameObject NewConveyorGroupX;
+        if (conveyorGroupXNbChild == 0)
+            DestroyImmediate(conveyorGroupX.gameObject);
 
-        for (int i = 0; i < array.Length; i++)
+        if (conveyorGroupXNbChild > 0)
         {
-            if (array[i + 1] == Vector2.zero)
-                break;
+            Transform beltsTransform = conveyorGroupX.transform.GetChild(conveyorGroupX.childCount - 1);
+            GameObject belt = beltsTransform.gameObject;
 
-            if (array[i].x != array[i + 1].x && array[i].y != array[i + 1].y)
+            GameObject NewConveyorGroupX = new GameObject($"conveyorGroup{-1}");
+            NewConveyorGroupX.transform.parent = this.transform;
+
+            bool inCopyMode = false;
+            int posToCopy = 0;
+
+
+            for (int i = 0; i < currentConveyorGroupsLength; i++)
             {
-                NewConveyorGroupX = new GameObject($"conveyorGroup{i}");
-                NewConveyorGroupX.transform.parent = this.transform;
+                belt = beltsTransform.gameObject;
+                if (array[i] + Vector2.up != array[i + 1] && array[i] + Vector2.down != array[i + 1] &&
+                    array[i] + Vector2.left != array[i + 1] && array[i] + Vector2.right != array[i + 1] && !inCopyMode && i != currentConveyorGroupsLength - 1)
+                {
+                    inCopyMode = true;
+                    posToCopy = i + 1;
+                }
+
+                if (inCopyMode && posToCopy < i + 1)
+                {
+                    beltsTransform = conveyorGroupX.transform.GetChild(posToCopy);
+                    beltsTransform.transform.SetParent(NewConveyorGroupX.transform, false);
+                }
             }
+            if (!inCopyMode)
+                DestroyImmediate(NewConveyorGroupX.gameObject);
         }
     }
 
@@ -128,37 +171,17 @@ public class ConveyorHandler : MonoBehaviour
         {
             start[counter] = array[0];
             end[counter] = array[currentArrayLength - 1];
-            for (int i = 0; i < start.Length - 1; i++)
-            {
-                if (end[counter] == start[i] - Vector2.up || end[counter] == start[i] - Vector2.down ||
-                    end[counter] == start[i] - Vector2.left || end[counter] == start[i] - Vector2.right)
-                {
-                    Transform conveyorGroup1 = conveyorBelts.transform.GetChild(counter);
-                    Transform beltsTransform = conveyorGroup1.transform.GetChild(conveyorGroup1.childCount - 1);
-                    Transform typeOfBelt1 = beltsTransform.transform.GetChild(0);
-                    type1 = GetType(typeOfBelt1.name);
-
-                    Transform conveyorGroup2 = conveyorBelts.transform.GetChild(i);
-                    beltsTransform = conveyorGroup2.transform.GetChild(0);
-                    Transform typeOfBelt2 = beltsTransform.transform.GetChild(0);
-                    type2 = GetType(typeOfBelt2.name);
-
-                    MergeEgdes(type1, type2, typeOfBelt1, typeOfBelt2, conveyorGroup1, conveyorGroup2);
-                    //Debug.Log($"{type1} to {type2}");
-                }
-                else if (start[counter] == end[i] - Vector2.up || start[counter] == end[i] - Vector2.down ||
-                         start[counter] == end[i] - Vector2.left || start[counter] == end[i] - Vector2.right)
-                {
-
-                }
-            }
         }
         else
         {
-            start[counter] = array[0];
-            end[counter] = array[currentArrayLength - 1];
+            start[0] = array[0];
+            end[0] = array[currentArrayLength - 1];
         }
-        //Debug.Log($"{end[counter]}{start[counter]}");
+        for (int i = 1; i < start.Length; i++)
+        {
+
+        }
+        //Debug.Log($"{start[counter]} + {end[counter]}");
     }
 
     static int GetType(string name)
@@ -181,6 +204,16 @@ public class ConveyorHandler : MonoBehaviour
         for (int i = 0; i < array.Length; i++)
             newArray[i] = array[i];
         newArray[newArray.Length - 1] = posToAdd;
+        return newArray;
+    }
+    static Vector2[] Append(Vector2[] array, Vector2[] arrayToAdd)
+    {
+        Vector2[] newArray = new Vector2[array.Length + arrayToAdd.Length];
+        for (int i = 0; i < newArray.Length; i++)
+            if (i > array.Length)
+                for (int j = 0; j < arrayToAdd.Length; j++)
+                    newArray[j + array.Length] = arrayToAdd[j];
+
         return newArray;
     }
 
@@ -218,16 +251,5 @@ public class ConveyorHandler : MonoBehaviour
                                                                       // 'true' would maintain world position/rotation
         }
         DestroyImmediate(source);
-    }
-
-    public void DeleteObjects(Vector2[] array)
-    {
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array.Contains(conveyors.Hitpoint))
-            {
-                
-            }
-        }
     }
 }
