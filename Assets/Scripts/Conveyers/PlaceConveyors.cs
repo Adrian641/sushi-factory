@@ -57,6 +57,13 @@ public class PlaceConveyors : MonoBehaviour
 
     void Update()
     {
+        float dt = 0;
+        dt += Time.deltaTime;
+        if (dt > 1)
+        {
+            isHandling = true;
+            dt = 0;
+        }
         CheckUsersInputs();
 
         if (isStartClickingMouse0)
@@ -68,6 +75,7 @@ public class PlaceConveyors : MonoBehaviour
         if (isReleasingMouse0)
         {
             DestroyImmediate(SeclectedTileGroup);
+            isHandling = true;
 
             if (!isHoldingLeftShift)
                 conveyorLinePath = CreateConveyorLine(mousePositions, mousePositionIndex);

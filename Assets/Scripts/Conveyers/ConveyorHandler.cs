@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using TMPro.Examples;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -51,6 +53,7 @@ public class ConveyorHandler : MonoBehaviour
     {
         if (conveyors.isHandling)
         {
+
             numberConveyorGroups = conveyorBelts.childCount;
             for (int i = 0; i < numberConveyorGroups; i++)
             {
@@ -154,8 +157,8 @@ public class ConveyorHandler : MonoBehaviour
             for (int i = 0; i < currentConveyorGroupsLength; i++)
             {
                 belt = beltsTransform.gameObject;
-                if (array[i] + Vector2.up != array[i + 1] && array[i] + Vector2.down != array[i + 1] &&
-                    array[i] + Vector2.left != array[i + 1] && array[i] + Vector2.right != array[i + 1] && !inCopyMode && i != currentConveyorGroupsLength - 1)
+                if (i != currentConveyorGroupsLength - 1 && array[i] + Vector2.up != array[i + 1] && array[i] + Vector2.down != array[i + 1] &&
+                    array[i] + Vector2.left != array[i + 1] && array[i] + Vector2.right != array[i + 1] && !inCopyMode)
                 {
                     inCopyMode = true;
                     posToCopy = i + 1;
@@ -187,43 +190,111 @@ public class ConveyorHandler : MonoBehaviour
             start[0] = array[0];
             end[0] = array[currentArrayLength - 1];
         }
-        for (int i = 0; i < counter; i++)
+
+        //Debug.Log(conveyorBelts.childCount);
+        for (int i = 0; i < conveyorBelts.childCount; i++)
         {
             Transform sourceGroup = conveyorBelts.transform.GetChild(i);
+            if (sourceGroup.childCount != 0)
+            {
+                Transform startPos = sourceGroup.transform.GetChild(0);
+                Transform startType = startPos.transform.GetChild(0);
+                Transform endPos = sourceGroup.transform.GetChild(sourceGroup.childCount - 1);
+                Transform endType = endPos.transform.GetChild(0);
 
-            Transform startPos = sourceGroup.transform.GetChild(0);
-            Transform startType = startPos.transform.GetChild(0);
-            Transform endPos = sourceGroup.transform.GetChild(sourceGroup.childCount - 1);
-            Transform endType = endPos.transform.GetChild(0);
-            int startCode = GetType(startType.name);
-            int endCode = GetType(endType.name);
+                int startCode = GetType(startType.name);
+                int endCode = GetType(endType.name);
 
-            Transform currentStartPos = homeGroup.transform.GetChild(0);
-            Transform currentStartType = currentStartPos.transform.GetChild(0);
-            Transform currentEndPos = homeGroup.transform.GetChild(homeGroup.childCount - 1);
-            Transform currentEndType = currentEndPos.transform.GetChild(0);
-            int currentStartCode = GetType(currentStartType.name);
-            int currentEndCode = GetType(currentEndType.name);
+                if (startCode / 10 != 0)
+                    ChangeEgde(startCode / 10, startType, new Vector2(startType.transform.position.x, startType.transform.position.z));
+                else if (endCode / 10 != 0)
+                    ChangeEgde(endCode, endType, new Vector2(endType.transform.position.x, endType.transform.position.z));
 
-            MergeEgdes(endCode, currentStartCode, currentStartType, endType);
-            //Debug.Log($"{startCode} - {endCode} - {currentStartCode} - {currentEndCode}");
-
-            if (start[counter].x == end[i].x && (start[counter] + Vector2.up == end[i] || start[counter] + Vector2.down == end[i]))
-                CopyAllChildren(homeGroup, sourceGroup);
-            else if (start[i].y == end[counter].y && (start[counter] + Vector2.left == end[i] || start[counter] + Vector2.right == end[i]))
-                CopyAllChildren(homeGroup, sourceGroup);
-            else if (start[i].x == end[counter].x && (end[counter] + Vector2.up == start[i] || end[counter] + Vector2.down == start[i]))
-                CopyAllChildren(sourceGroup, homeGroup);
-            else if (start[i].y == end[counter].y && (end[counter] + Vector2.left == start[i] || end[counter] + Vector2.right == start[i]))
-                CopyAllChildren(sourceGroup, homeGroup);
+                for (int j = 0; j < start.Length - 1; j++)
+                {
+                    Debug.Log("--");
+                }
+                //Debug.Log(start.Length - 1);
+                //Debug.Log($"{startCode / 10}{endCode / 10}");
+            }
         }
-        //Debug.Log($"{start[counter]} + {end[counter]}");
+        //    for (int i = 0; i < counter; i++)
+        //    {
+        //        Transform sourceGroup = conveyorBelts.transform.GetChild(i);
+
+        //        Transform startPos = sourceGroup.transform.GetChild(0);
+        //        Transform startType = startPos.transform.GetChild(0);
+        //        Transform endPos = sourceGroup.transform.GetChild(sourceGroup.childCount - 1);
+        //        Transform endType = endPos.transform.GetChild(0);
+
+        //        int startCodeI = GetType(startType.name);
+        //        int endCodeI = GetType(endType.name);
+
+        //        Debug.Log($"{start[i]} + {end[i]}");
+        //        for (int j = 0; j < counter; j++)
+        //        {
+        //            homeGroup = conveyorBelts.GetChild(j);
+        //            Transform currentStartPos = homeGroup.transform.GetChild(0);
+        //            Transform currentStartType = currentStartPos.transform.GetChild(0);
+        //            Transform currentEndPos = homeGroup.transform.GetChild(homeGroup.childCount - 1);
+        //            Transform currentEndType = currentEndPos.transform.GetChild(0);
+        //            int currentStartCode = GetType(currentStartType.name);
+        //            int currentEndCode = GetType(currentEndType.name);
+
+        //            if (j == i)
+        //                j++;
+        //            if (j == start.Length)
+        //                break;
+
+        //            //Debug.LogError($"{start[i]}{end[i]} - {start[j]}{end[j]} --- {startCodeI}{endCodeI} - {currentEndCode}{currentStartCode}");
+        //            if (start[i].x == end[j].x && (end[j] + Vector2.up == start[i] || end[j] + Vector2.down == start[i]))
+        //                CopyAllChildren(homeGroup, sourceGroup);
+        //else if (start[i].y == end[j].y && startCodeI == currentEndCode && (end[j] + Vector2.left == start[i] || end[j] + Vector2.right == start[i]))
+        //    CopyAllChildren(homeGroup, sourceGroup);
+        //else if (end[i].x == start[j].x && endCodeI == currentStartCode && (start[j] + Vector2.up == end[i] || start[j] + Vector2.down == end[i]))
+        //    CopyAllChildren(homeGroup, sourceGroup);
+        //else if (end[i].y == start[j].y && endCodeI == currentStartCode && (start[j] + Vector2.left == end[i] || start[j] + Vector2.right == end[i]))
+        //    CopyAllChildren(homeGroup, sourceGroup);
+        //}
+        //Debug.Log($"{startCode} - {endCode} - {currentStartCode} - {currentEndCode}");
+        //for (int j = i; j < start.Length - 1 || homeGroup != null || sourceGroup != null; i++)
+        //{
+        //    if (i >= start.Length)
+        //        break;
+        //    if (start[j].x == end[i].x && (start[j] + Vector2.up == end[i] || start[j] + Vector2.down == end[i]))
+        //    {
+        //        CopyAllChildren(homeGroup, sourceGroup);
+        //        //break;
+        //    }
+        //    else if (start[i].y == end[j].y && (start[j] + Vector2.left == end[i] || start[j] + Vector2.right == end[i]))
+        //    {
+        //        CopyAllChildren(homeGroup, sourceGroup);
+        //        //MergeEgdes(endCode, currentStartCode, currentStartType, endType, counter);
+        //        //break;
+        //    }
+
+        //    if (homeGroup == null || sourceGroup == null)
+        //    {
+        //        break;
+        //    }
+        //    else if (start[i].x == end[j].x && (end[j] + Vector2.up == start[i] || end[j] + Vector2.down == start[i]))
+        //    {
+        //        CopyAllChildren(sourceGroup, homeGroup);
+        //        //break;
+        //    }
+        //    else if (start[i].y == end[j].y && (end[j] + Vector2.left == start[i] || end[j] + Vector2.right == start[i]))
+        //    {
+        //        CopyAllChildren(sourceGroup, homeGroup);
+        //        //break;
+        //    }
+        //}
+        //    }
     }
 
     static int GetType(string name)
     {
         string typeString = "";
-        for (int i = 0; 0 < name.Length; i++)
+        for (int i = 0; i < name.Length; i++)
         {
             if (!Char.IsDigit(name[i]))
                 break;
@@ -244,72 +315,48 @@ public class ConveyorHandler : MonoBehaviour
     }
     static Vector2[] Append(Vector2[] array, Vector2[] arrayToAdd)
     {
+        if (array == null) array = new Vector2[0];
+        if (arrayToAdd == null) arrayToAdd = new Vector2[0];
+
         Vector2[] newArray = new Vector2[array.Length + arrayToAdd.Length];
-        for (int i = 0; i < newArray.Length; i++)
-            if (i > array.Length)
-                for (int j = 0; j < arrayToAdd.Length; j++)
-                    newArray[j + array.Length] = arrayToAdd[j];
+        for (int i = 0; i < array.Length; i++)
+            newArray[i] = array[i];
+        for (int j = 0; j < arrayToAdd.Length; j++)
+            newArray[array.Length + j] = arrayToAdd[j];
 
         return newArray;
     }
 
-    public void MergeEgdes(int type, int typeToChange, Transform beltType, Transform beltTypeToChange)
+
+    public void ChangeEgde(int type, Transform beltTypeToChange, Vector2 pos)
     {
-        if (typeToChange - 5 < 0)
-            typeToChange *= 10;
-        int newType = 0;
-        if (typeToChange / 10 == 1)
+        type = type % 10;
+        Debug.Log(type);
+        if (type != 0)
         {
-            if (type % 10 == 3)
-                newType = 13;
-            else if (type % 10 == 4)
-                newType = 14;
+            InstantiateBelt(type, beltTypeToChange.parent.gameObject, pos);
+            DestroyImmediate(beltTypeToChange.gameObject);
         }
-        else if (typeToChange / 10 == 2)
-        {
-            if (type % 10 == 3)
-                newType = 23;
-            else if (type % 10 == 4)
-                newType = 24;
-        }
-        else if (typeToChange / 10 == 3)
-        {
-            if (type % 10 == 1)
-                newType = 31;
-            else if (type % 10 == 2)
-                newType = 32;
-        }
-        else if (typeToChange / 10 == 4)
-        {
-            if (type % 10 == 1)
-                newType = 41;
-            else if (type % 10 == 2)
-                newType = 42;
-        }
-        if (newType != 0)
-            InstantiateBelt(newType, beltTypeToChange.parent.gameObject, start[0]);
     }
 
     void CopyAllChildren(Transform sourceTr, Transform targetTr)
     {
-        Debug.Log("asdasdasda");
-        GameObject source = sourceTr.gameObject;
-        GameObject target = targetTr.gameObject;
-
-        // Iterate through all direct children of the source GameObject
-        for (int i = 0; i < source.transform.childCount; i++)
+        if (sourceTr != null && targetTr != null)
         {
-            Transform childTransform = source.transform.GetChild(i);
+            Debug.Log("asdasdasda");
+            GameObject source = sourceTr.gameObject;
+            GameObject target = targetTr.gameObject;
 
-            // Instantiate a copy of the child GameObject
-            GameObject copiedChild = Instantiate(childTransform.gameObject);
-            copiedChild.name = childTransform.name;
+            for (int i = 0; i < source.transform.childCount; i++)
+            {
+                Transform childTransform = source.transform.GetChild(i);
+                GameObject copiedChild = Instantiate(childTransform.gameObject);
+                copiedChild.name = childTransform.name;
 
-            // Set the target GameObject as the parent of the copied child
-            copiedChild.transform.SetParent(target.transform, false); // 'false' maintains local position/rotation relative to the new parent
-                                                                      // 'true' would maintain world position/rotation
+                copiedChild.transform.SetParent(target.transform, false);
+            }
+            DestroyImmediate(source);
         }
-        DestroyImmediate(source);
     }
 
     void InstantiateBelt(float beltCode, GameObject parent, Vector2 pos)
@@ -323,22 +370,6 @@ public class ConveyorHandler : MonoBehaviour
             PrefabToSpawn = PrefabBelt_Left;
         else if (beltCode == 4)
             PrefabToSpawn = PrefabBelt_Right;
-        else if (beltCode == 31)
-            PrefabToSpawn = PrefabBelt_Up_Left;
-        else if (beltCode == 41)
-            PrefabToSpawn = PrefabBelt_Up_Right;
-        else if (beltCode == 32)
-            PrefabToSpawn = PrefabBelt_Down_Left;
-        else if (beltCode == 42)
-            PrefabToSpawn = PrefabBelt_Down_Right;
-        else if (beltCode == 13)
-            PrefabToSpawn = PrefabBelt_Left_Up;
-        else if (beltCode == 23)
-            PrefabToSpawn = PrefabBelt_Left_Down;
-        else if (beltCode == 14)
-            PrefabToSpawn = PrefabBelt_Right_Up;
-        else if (beltCode == 24)
-            PrefabToSpawn = PrefabBelt_Right_Down;
         else
             PrefabToSpawn = PrefabBelt_Up;
 

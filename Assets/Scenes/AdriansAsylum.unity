@@ -330,18 +330,18 @@ MonoBehaviour:
   mainCam: {fileID: 1117003250}
   Hitpoint: {x: 0, y: 0}
   beltPositions: []
-  PrefabBelt_Up: {fileID: 0}
-  PrefabBelt_Down: {fileID: 0}
-  PrefabBelt_Left: {fileID: 0}
-  PrefabBelt_Right: {fileID: 0}
-  PrefabBelt_Up_Left: {fileID: 0}
-  PrefabBelt_Up_Right: {fileID: 0}
-  PrefabBelt_Down_Left: {fileID: 0}
-  PrefabBelt_Down_Right: {fileID: 0}
-  PrefabBelt_Left_Up: {fileID: 0}
-  PrefabBelt_Left_Down: {fileID: 0}
-  PrefabBelt_Right_Up: {fileID: 0}
-  PrefabBelt_Right_Down: {fileID: 0}
+  PrefabBelt_Up: {fileID: 6960395956089341982, guid: d16e9bdfdc96180418115b70e31a9274, type: 3}
+  PrefabBelt_Down: {fileID: 8115703481879560809, guid: 7f157b371e9085243b5b98f96d741634, type: 3}
+  PrefabBelt_Left: {fileID: 4669832817295610021, guid: e4ca6faa2a83e8c4f9fa235e8998352f, type: 3}
+  PrefabBelt_Right: {fileID: 5570493505052588574, guid: 678be277031767049ac87df98dc66ac0, type: 3}
+  PrefabBelt_Up_Left: {fileID: 2252067011733411686, guid: 35bb98544b50b4e4cbc2ca8ccc2dee45, type: 3}
+  PrefabBelt_Up_Right: {fileID: 4061894546850316293, guid: 5ad4cd530f8817c4180a386d345e60bc, type: 3}
+  PrefabBelt_Down_Left: {fileID: 1188745469328926760, guid: 2f06aaf178d45d74e87f30664086f955, type: 3}
+  PrefabBelt_Down_Right: {fileID: 8290769095764493283, guid: 2b45223e1d72dff4197988871625ff0c, type: 3}
+  PrefabBelt_Left_Up: {fileID: 3240560741714607419, guid: 8647d4a8eabb7e34dbe17351cd29344c, type: 3}
+  PrefabBelt_Left_Down: {fileID: 189769757905308938, guid: a140109018791ed4b8dffa6f0da20379, type: 3}
+  PrefabBelt_Right_Up: {fileID: 2297742567333149678, guid: 9bb118c53b5bfab40a218c8ea13bf7fd, type: 3}
+  PrefabBelt_Right_Down: {fileID: 8468668606841036651, guid: 5205efa98def940449b234daced44c9c, type: 3}
 --- !u!114 &1143979225
 MonoBehaviour:
   m_ObjectHideFlags: 0
