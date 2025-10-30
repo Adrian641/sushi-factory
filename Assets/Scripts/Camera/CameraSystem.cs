@@ -57,16 +57,16 @@ public class CameraSystem : MonoBehaviour
 
     private void HandleCameraZoom()
     {
-        if (Input.mouseScrollDelta.y < 0)
-        {
-            targetFieldOfView += 5f;
-        }
-        if (Input.mouseScrollDelta.y > 0)
-        {
-            targetFieldOfView -= 5f;
-        }
+        //if (Input.mouseScrollDelta.y < 0)
+        //{
+        //    targetFieldOfView += 5f;
+        //}
+        //if (Input.mouseScrollDelta.y > 0)
+        //{
+        //    targetFieldOfView -= 5f;
+        //}
 
-        targetFieldOfView = Mathf.Clamp(targetFieldOfView, fieldOfViewMin, fieldOfViewMax);
-        cinemachineVirtualCamera.m_Lens.FieldOfView = targetFieldOfView;
+        //targetFieldOfView = Mathf.Clamp(targetFieldOfView, fieldOfViewMin, fieldOfViewMax);
+        //cinemachineVirtualCamera.m_Lens.FieldOfView = targetFieldOfView;
     }
 }

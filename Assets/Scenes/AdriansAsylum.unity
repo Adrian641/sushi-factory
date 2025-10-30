@@ -323,12 +323,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0337786668fa74893a025d0325d9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conveyors: {fileID: 0}
+  conveyors: {fileID: 1143979225}
+  currentConveyorGroupsLength: 0
   start: []
   end: []
   mainCam: {fileID: 1117003250}
   Hitpoint: {x: 0, y: 0}
   beltPositions: []
+  PrefabBelt_Up: {fileID: 0}
+  PrefabBelt_Down: {fileID: 0}
+  PrefabBelt_Left: {fileID: 0}
+  PrefabBelt_Right: {fileID: 0}
+  PrefabBelt_Up_Left: {fileID: 0}
+  PrefabBelt_Up_Right: {fileID: 0}
+  PrefabBelt_Down_Left: {fileID: 0}
+  PrefabBelt_Down_Right: {fileID: 0}
+  PrefabBelt_Left_Up: {fileID: 0}
+  PrefabBelt_Left_Down: {fileID: 0}
+  PrefabBelt_Right_Up: {fileID: 0}
+  PrefabBelt_Right_Down: {fileID: 0}
 --- !u!114 &1143979225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,10 +469,10 @@ MonoBehaviour:
   SeclectedTile: {fileID: 7818943859801871519, guid: 9c0f1209d3895df4da1062acca9740f1, type: 3}
   conveyorLinePath: []
   conveyorGroupNumber: 0
-  PrefabBelt_Up: {fileID: 6960395956089341982, guid: c635db86048bb2c42bec334ebb06950e, type: 3}
-  PrefabBelt_Down: {fileID: 8115703481879560809, guid: c0578ccb3a11b284aaf2c62a04bc2e09, type: 3}
-  PrefabBelt_Left: {fileID: 4669832817295610021, guid: b758d57650f8e4d4787f9d037c34a0b0, type: 3}
-  PrefabBelt_Right: {fileID: 5570493505052588574, guid: 4075916a75cbd46498211bd9b92c4b5b, type: 3}
+  PrefabBelt_Up: {fileID: 6960395956089341982, guid: d16e9bdfdc96180418115b70e31a9274, type: 3}
+  PrefabBelt_Down: {fileID: 8115703481879560809, guid: 7f157b371e9085243b5b98f96d741634, type: 3}
+  PrefabBelt_Left: {fileID: 4669832817295610021, guid: e4ca6faa2a83e8c4f9fa235e8998352f, type: 3}
+  PrefabBelt_Right: {fileID: 5570493505052588574, guid: 678be277031767049ac87df98dc66ac0, type: 3}
   PrefabBelt_Up_Left: {fileID: 2252067011733411686, guid: 35bb98544b50b4e4cbc2ca8ccc2dee45, type: 3}
   PrefabBelt_Up_Right: {fileID: 4061894546850316293, guid: 5ad4cd530f8817c4180a386d345e60bc, type: 3}
   PrefabBelt_Down_Left: {fileID: 1188745469328926760, guid: 2f06aaf178d45d74e87f30664086f955, type: 3}
@@ -479,6 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1342392961}
   - component: {fileID: 1342392962}
+  - component: {fileID: 1342392963}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -518,6 +532,27 @@ MonoBehaviour:
   Grid: {fileID: 1342392960}
   tile1: {fileID: 1214786859337303818, guid: 31de41d233cab264bb619067a8a51f1c, type: 3}
   tile2: {fileID: 7208437074616841657, guid: dd63c1ec447a6704c9a6c04426f3493e, type: 3}
+--- !u!65 &1342392963
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342392960}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

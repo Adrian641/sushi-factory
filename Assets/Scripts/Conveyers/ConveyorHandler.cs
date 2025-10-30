@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class ConveyorHandler : MonoBehaviour
 {
@@ -27,6 +28,18 @@ public class ConveyorHandler : MonoBehaviour
 
     Vector2[] allPos = { };
 
+    public GameObject PrefabBelt_Up;
+    public GameObject PrefabBelt_Down;
+    public GameObject PrefabBelt_Left;
+    public GameObject PrefabBelt_Right;
+    public GameObject PrefabBelt_Up_Left;
+    public GameObject PrefabBelt_Up_Right;
+    public GameObject PrefabBelt_Down_Left;
+    public GameObject PrefabBelt_Down_Right;
+    public GameObject PrefabBelt_Left_Up;
+    public GameObject PrefabBelt_Left_Down;
+    public GameObject PrefabBelt_Right_Up;
+    public GameObject PrefabBelt_Right_Down;
 
     void Start()
     {
@@ -59,7 +72,7 @@ public class ConveyorHandler : MonoBehaviour
                         beltPositions = DecriptConveyorBelts(numberConveyorGroups, i);
                         Deconstruct(beltPositions, i);
                         allConveyorsNb += currentConveyorGroupsLength;
-                        //MergeBeltGroups(beltPositions, i, currentConveyorGroupsLength, allConveyorsNb);
+                        MergeBeltGroups(beltPositions, i, currentConveyorGroupsLength, allConveyorsNb, conveyorGroupX);
                     }
                 }
                 numberConveyorGroups = conveyorBelts.childCount;
@@ -159,13 +172,10 @@ public class ConveyorHandler : MonoBehaviour
         }
     }
 
-    public void MergeBeltGroups(Vector2[] array, int counter, int currentArrayLength, int arrayLength)
+    public void MergeBeltGroups(Vector2[] array, int counter, int currentArrayLength, int arrayLength, Transform homeGroup)
     {
         start = Append(start, Vector2.zero);
         end = Append(end, Vector2.zero);
-
-        int type1 = 0;
-        int type2 = 0;
 
         if (counter > 0)
         {
@@ -177,9 +187,35 @@ public class ConveyorHandler : MonoBehaviour
             start[0] = array[0];
             end[0] = array[currentArrayLength - 1];
         }
-        for (int i = 1; i < start.Length; i++)
+        for (int i = 0; i < counter; i++)
         {
+            Transform sourceGroup = conveyorBelts.transform.GetChild(i);
 
+            Transform startPos = sourceGroup.transform.GetChild(0);
+            Transform startType = startPos.transform.GetChild(0);
+            Transform endPos = sourceGroup.transform.GetChild(sourceGroup.childCount - 1);
+            Transform endType = endPos.transform.GetChild(0);
+            int startCode = GetType(startType.name);
+            int endCode = GetType(endType.name);
+
+            Transform currentStartPos = homeGroup.transform.GetChild(0);
+            Transform currentStartType = currentStartPos.transform.GetChild(0);
+            Transform currentEndPos = homeGroup.transform.GetChild(homeGroup.childCount - 1);
+            Transform currentEndType = currentEndPos.transform.GetChild(0);
+            int currentStartCode = GetType(currentStartType.name);
+            int currentEndCode = GetType(currentEndType.name);
+
+            MergeEgdes(endCode, currentStartCode, currentStartType, endType);
+            //Debug.Log($"{startCode} - {endCode} - {currentStartCode} - {currentEndCode}");
+
+            if (start[counter].x == end[i].x && (start[counter] + Vector2.up == end[i] || start[counter] + Vector2.down == end[i]))
+                CopyAllChildren(homeGroup, sourceGroup);
+            else if (start[i].y == end[counter].y && (start[counter] + Vector2.left == end[i] || start[counter] + Vector2.right == end[i]))
+                CopyAllChildren(homeGroup, sourceGroup);
+            else if (start[i].x == end[counter].x && (end[counter] + Vector2.up == start[i] || end[counter] + Vector2.down == start[i]))
+                CopyAllChildren(sourceGroup, homeGroup);
+            else if (start[i].y == end[counter].y && (end[counter] + Vector2.left == start[i] || end[counter] + Vector2.right == start[i]))
+                CopyAllChildren(sourceGroup, homeGroup);
         }
         //Debug.Log($"{start[counter]} + {end[counter]}");
     }
@@ -217,23 +253,46 @@ public class ConveyorHandler : MonoBehaviour
         return newArray;
     }
 
-    public void MergeEgdes(int type1, int type2, Transform beltType1, Transform beltType2, Transform HomeGroup1, Transform HomeGroup2)
+    public void MergeEgdes(int type, int typeToChange, Transform beltType, Transform beltTypeToChange)
     {
-        if (type1 == type2)
+        if (typeToChange - 5 < 0)
+            typeToChange *= 10;
+        int newType = 0;
+        if (typeToChange / 10 == 1)
         {
-            CopyAllChildren(HomeGroup2, HomeGroup1);
+            if (type % 10 == 3)
+                newType = 13;
+            else if (type % 10 == 4)
+                newType = 14;
         }
-
-
-        //if (type1 == 01 && type2 == 02 || type1 == 03 && type2 == 04 ||
-        //type1 == 02 && type2 == 01 || type1 == 04 && type2 == 03)
-        //{
-        //    typeOfBelt = beltsTransform.transform.GetChild(0);
-        //}
+        else if (typeToChange / 10 == 2)
+        {
+            if (type % 10 == 3)
+                newType = 23;
+            else if (type % 10 == 4)
+                newType = 24;
+        }
+        else if (typeToChange / 10 == 3)
+        {
+            if (type % 10 == 1)
+                newType = 31;
+            else if (type % 10 == 2)
+                newType = 32;
+        }
+        else if (typeToChange / 10 == 4)
+        {
+            if (type % 10 == 1)
+                newType = 41;
+            else if (type % 10 == 2)
+                newType = 42;
+        }
+        if (newType != 0)
+            InstantiateBelt(newType, beltTypeToChange.parent.gameObject, start[0]);
     }
 
     void CopyAllChildren(Transform sourceTr, Transform targetTr)
     {
+        Debug.Log("asdasdasda");
         GameObject source = sourceTr.gameObject;
         GameObject target = targetTr.gameObject;
 
@@ -251,5 +310,39 @@ public class ConveyorHandler : MonoBehaviour
                                                                       // 'true' would maintain world position/rotation
         }
         DestroyImmediate(source);
+    }
+
+    void InstantiateBelt(float beltCode, GameObject parent, Vector2 pos)
+    {
+        GameObject PrefabToSpawn;
+        if (beltCode == 1)
+            PrefabToSpawn = PrefabBelt_Up;
+        else if (beltCode == 2)
+            PrefabToSpawn = PrefabBelt_Down;
+        else if (beltCode == 3)
+            PrefabToSpawn = PrefabBelt_Left;
+        else if (beltCode == 4)
+            PrefabToSpawn = PrefabBelt_Right;
+        else if (beltCode == 31)
+            PrefabToSpawn = PrefabBelt_Up_Left;
+        else if (beltCode == 41)
+            PrefabToSpawn = PrefabBelt_Up_Right;
+        else if (beltCode == 32)
+            PrefabToSpawn = PrefabBelt_Down_Left;
+        else if (beltCode == 42)
+            PrefabToSpawn = PrefabBelt_Down_Right;
+        else if (beltCode == 13)
+            PrefabToSpawn = PrefabBelt_Left_Up;
+        else if (beltCode == 23)
+            PrefabToSpawn = PrefabBelt_Left_Down;
+        else if (beltCode == 14)
+            PrefabToSpawn = PrefabBelt_Right_Up;
+        else if (beltCode == 24)
+            PrefabToSpawn = PrefabBelt_Right_Down;
+        else
+            PrefabToSpawn = PrefabBelt_Up;
+
+        GameObject ConveyerSprite = Instantiate(PrefabToSpawn, new Vector3(pos.x, 0f, pos.y), Quaternion.Euler(90f, 0f, 0f), parent.transform);
+
     }
 }
