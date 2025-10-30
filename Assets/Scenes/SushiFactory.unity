@@ -8787,7 +8787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1037068431
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9760,6 +9760,18 @@ MonoBehaviour:
   mainCam: {fileID: 0}
   Hitpoint: {x: 0, y: 0}
   beltPositions: []
+  PrefabBelt_Up: {fileID: 0}
+  PrefabBelt_Down: {fileID: 0}
+  PrefabBelt_Left: {fileID: 0}
+  PrefabBelt_Right: {fileID: 0}
+  PrefabBelt_Up_Left: {fileID: 0}
+  PrefabBelt_Up_Right: {fileID: 0}
+  PrefabBelt_Down_Left: {fileID: 0}
+  PrefabBelt_Down_Right: {fileID: 0}
+  PrefabBelt_Left_Up: {fileID: 0}
+  PrefabBelt_Left_Down: {fileID: 0}
+  PrefabBelt_Right_Up: {fileID: 0}
+  PrefabBelt_Right_Down: {fileID: 0}
 --- !u!114 &1143979225
 MonoBehaviour:
   m_ObjectHideFlags: 0
