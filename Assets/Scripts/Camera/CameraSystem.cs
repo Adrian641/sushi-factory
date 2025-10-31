@@ -25,7 +25,7 @@ public class CameraSystem : MonoBehaviour
 
         float rotateDirX = 0f;
         float rotateDirY = 0f;
-        float sensitivity = 10f;
+        float sensitivity = 20f;
         if (Input.GetKey(KeyCode.Mouse2))
         {
             rotateDirX += Input.GetAxis("Mouse X") * sensitivity;
@@ -57,16 +57,16 @@ public class CameraSystem : MonoBehaviour
 
     private void HandleCameraZoom()
     {
-        //if (Input.mouseScrollDelta.y < 0)
-        //{
-        //    targetFieldOfView += 5f;
-        //}
-        //if (Input.mouseScrollDelta.y > 0)
-        //{
-        //    targetFieldOfView -= 5f;
-        //}
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            targetFieldOfView += 5f;
+        }
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            targetFieldOfView -= 5f;
+        }
 
-        //targetFieldOfView = Mathf.Clamp(targetFieldOfView, fieldOfViewMin, fieldOfViewMax);
-        //cinemachineVirtualCamera.m_Lens.FieldOfView = targetFieldOfView;
+        targetFieldOfView = Mathf.Clamp(targetFieldOfView, fieldOfViewMin, fieldOfViewMax);
+        cinemachineVirtualCamera.m_Lens.FieldOfView = targetFieldOfView;
     }
 }
