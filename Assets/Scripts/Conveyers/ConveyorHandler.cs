@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ConveyorHandler : MonoBehaviour
@@ -11,7 +12,9 @@ public class ConveyorHandler : MonoBehaviour
     public int currentConveyorGroupsLength = 0;
     int allConveyorsNb = 0;
     public Vector2[] start;
+    public List<Vector2> allStartPoints = new List<Vector2>();
     public Vector2[] end;
+    public List<Vector2> allEndPoints = new List<Vector2>();
 
     public Camera mainCam;
     public RaycastHit RayHit;
@@ -51,6 +54,7 @@ public class ConveyorHandler : MonoBehaviour
             {
                 Transform conveyorGroupX = conveyorBelts.transform.GetChild(i);
                 int conveyorGroupXNbChild = conveyorGroupX.childCount;
+
                 if (conveyorGroupXNbChild == 0)
                 {
                     DestroyImmediate(conveyorGroupX.gameObject);
@@ -78,6 +82,14 @@ public class ConveyorHandler : MonoBehaviour
 
             conveyors.isHandling = false;
             allConveyorsNb = 0;
+
+            allEndPoints.Clear();
+            allStartPoints.Clear();
+            for (int j = 0; j < end.Length; j++)
+            {
+                allEndPoints.Add(end[j]);
+                allStartPoints.Add(start[j]);
+            }
 
             start = new Vector2[0];
             end = new Vector2[0];
