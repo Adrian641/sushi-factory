@@ -1,13 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TMPro.Examples;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class ConveyorHandler : MonoBehaviour
 {
@@ -192,7 +184,6 @@ public class ConveyorHandler : MonoBehaviour
             end[0] = array[currentArrayLength - 1];
         }
 
-        //Debug.Log(conveyorBelts.childCount);
         for (int i = 0; i < conveyorBelts.childCount; i++)
         {
             Transform sourceGroup = conveyorBelts.transform.GetChild(i);
@@ -279,8 +270,6 @@ public class ConveyorHandler : MonoBehaviour
                             CopyAllChildren(conveyorBelts.transform.GetChild(counter), sourceGroup);
                     }
                 }
-                //Debug.Log(start.Length);
-                //Debug.Log($"{startCode / 10}{endCode / 10}");
             }
         }
     }
@@ -289,6 +278,7 @@ public class ConveyorHandler : MonoBehaviour
         Transform group = conveyorBelts.transform.GetChild(counter);
         int[] allType = new int[group.childCount];
         int newType = 0;
+        bool switchCorners = false;
         for (int i = 0; i < group.childCount; i++)
         {
             Transform pos = group.transform.GetChild(i);
@@ -297,23 +287,31 @@ public class ConveyorHandler : MonoBehaviour
         }
         for (int i = 0; i < allType.Length - 1; i++)
         {
-            //Debug.Log($"{allType[i]} - {array[i]} - {array[i + 1]}");
             if (allType[i] != allType[i + 1] && allType[i] / 10 == 0 && allType[i + 1] / 10 == 0)
             {
                 newType = allType[i + 1] * 10 + allType[i];
-                if (allType[i] == 2 || allType[i] == 4 && allType[i + 1] == 3 || allType[i + 1] == 1)
-                {
-                    Transform pos = group.transform.GetChild(i);
-                    Transform type = pos.transform.GetChild(0);
-                    ChangeIntoEgde(newType, type, array[i]);
-                }
-                else 
+
+                if (newType / 10 == 1 && array[i] + Vector2.up != array[i + 1])
+                    switchCorners = true;
+                else if (newType / 10 == 2 && array[i] + Vector2.down != array[i + 1])
+                    switchCorners = true;
+                else if (newType / 10 == 3 && array[i] + Vector2.left != array[i + 1])
+                    switchCorners = true;
+                else if (newType / 10 == 4 && array[i] + Vector2.right != array[i + 1])
+                    switchCorners = true;
+
+                if (switchCorners)
                 {
                     Transform pos = group.transform.GetChild(i + 1);
                     Transform type = pos.transform.GetChild(0);
                     ChangeIntoEgde(newType, type, array[i + 1]);
                 }
-
+                else
+                {
+                    Transform pos = group.transform.GetChild(i);
+                    Transform type = pos.transform.GetChild(0);
+                    ChangeIntoEgde(newType, type, array[i]);
+                }
             }
         }
     }
@@ -373,7 +371,6 @@ public class ConveyorHandler : MonoBehaviour
     {
         if (sourceTr != null && targetTr != null)
         {
-            Debug.Log("asdasdasda");
             GameObject source = sourceTr.gameObject;
             GameObject target = targetTr.gameObject;
 

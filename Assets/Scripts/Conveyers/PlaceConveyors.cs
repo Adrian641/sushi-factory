@@ -246,7 +246,7 @@ public class PlaceConveyors : MonoBehaviour
 
     public void DeleteObjects()
     {
-        
+
         if (Physics.Raycast(ray, out RayHit))
         {
             GameObject hit = RayHit.transform.gameObject;
@@ -265,7 +265,7 @@ public class PlaceConveyors : MonoBehaviour
             if (Physics.Raycast(new Vector3(Pos[i].x, 0.5f, Pos[i].y), Vector3.down, out RayHit))
             {
                 GameObject hit = RayHit.transform.gameObject;
-                if (hit.layer != beltLayer)
+                if (hit.layer != beltLayer && hit.CompareTag("Belt"))
                 {
                     GameObject hitParent = hit.transform.parent.gameObject;
                     Destroy(hitParent);
