@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip belt;
     public AudioClip extractor;
     public AudioClip sceneChange;
+    public AudioClip beltFail;
 
     public static AudioManager instance;
 

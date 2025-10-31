@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutorialBox : MonoBehaviour
 {
@@ -15,20 +16,25 @@ public class TutorialBox : MonoBehaviour
 
     private int index;
 
+    AudioManager AudioManager;
+
     void Start()
     {
         textComponent.text = string.Empty;
         StartDialog();
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("enter");
+
             if (textComponent.text == lines[index])
             {
                 NextLine();
+                AudioManager.PlaySFX(AudioManager.UIclick);
             }
             else
             {
