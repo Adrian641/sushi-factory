@@ -17,7 +17,7 @@ public class CreateGrid : MonoBehaviour
         {
             for (int j = 0; j < gridSizeY; j++)
             {
-                Quaternion rotation = Quaternion.Euler(90f, 0, 0);
+                Quaternion rotation = Quaternion.Euler(0, 0, 0);
 
                 if (i % 2 == 0)
                 {

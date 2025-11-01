@@ -39,7 +39,7 @@ public class FishSpawner : MonoBehaviour
             else if (y > 0f + camY && y < 10f + camY)
                 y = Random.Range(20f, 10f) + camY;
 
-            Instantiate(salmon, new Vector3(x, 6, y), rotation);
+            Instantiate(salmon, new Vector3(x, 10, y), rotation);
         }
         if (pickObject == 2)
         {
@@ -55,7 +55,7 @@ public class FishSpawner : MonoBehaviour
             else if (y > 0f + camY && y < 10f + camY)
                 y = Random.Range(20f, 10f) + camY;
 
-            Instantiate(tuna, new Vector3(x, 6, y), rotation);
+            Instantiate(tuna, new Vector3(x, 10, y), rotation);
         }
         if (pickObject == 3)
         {
@@ -71,7 +71,7 @@ public class FishSpawner : MonoBehaviour
             else if (y > 0f + camY && y < 10f + camY)
                 y = Random.Range(20f, 10f) + camY;
 
-            Instantiate(orangeFish, new Vector3(x, 4, y), rotation);
+            Instantiate(orangeFish, new Vector3(x, 8, y), rotation);
         }
         if (pickObject == 4)
         {
@@ -87,7 +87,7 @@ public class FishSpawner : MonoBehaviour
             else if (y > 0f + camY && y < 10f + camY)
                 y = Random.Range(20f, 10f) + camY;
 
-            Instantiate(sharky, new Vector3(x, 4, y), rotation);
+            Instantiate(sharky, new Vector3(x, 8, y), rotation);
         }
         if (pickObject == 5)
         {
@@ -103,7 +103,7 @@ public class FishSpawner : MonoBehaviour
             else if (y > 0f + camY && y < 10f + camY)
                 y = Random.Range(20f, 10f) + camY;
 
-            Instantiate(jelly, new Vector3(x, 4, y), rotation);
+            Instantiate(jelly, new Vector3(x, 8, y), rotation);
         }
         if (pickObject == 6)
         {
