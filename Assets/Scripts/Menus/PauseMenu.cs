@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     AudioManager AudioManager;
 
-    private void Awake()
+    private void Start()
     {
         AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }

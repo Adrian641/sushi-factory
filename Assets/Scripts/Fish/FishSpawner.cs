@@ -15,7 +15,7 @@ public class FishSpawner : MonoBehaviour
 
     void Start()
     {
-        SpawningTime = Random.Range(0.1f, 1.5f);
+        SpawningTime = Random.Range(1.5f, 3.5f);
     }
 
     void SpawnNow()
@@ -27,38 +27,98 @@ public class FishSpawner : MonoBehaviour
 
         if (pickObject == 1)
         {
-            float x = Random.Range(camX + 10f, camX - 10f);
-            float y = Random.Range(camY + 10f, camY - 10f);
+            float x = Random.Range(camX + 20f, camX + 20f);
+            float y = Random.Range(camY + 20f, camY + 20f);
+
+            if (x > -10f + camX && x <= 0f + camX)
+                x = Random.Range(-20f, -10f) + camX;
+            else if (x > 0f + camX && x < 10f + camX)
+                x = Random.Range(20f, 10f) + camX;
+            if (y > -10f + camY && y <= 0f + camY)
+                y = Random.Range(-20f, -10f) + camY;
+            else if (y > 0f + camY && y < 10f + camY)
+                y = Random.Range(20f, 10f) + camY;
+
             Instantiate(salmon, new Vector3(x, 6, y), rotation);
         }
         if (pickObject == 2)
         {
-            float x = Random.Range(camX + 10f, camX - 10f);
-            float y = Random.Range(camY + 10f, camY - 10f);
+            float x = Random.Range(camX + 20f, camX + 20f);
+            float y = Random.Range(camY + 20f, camY + 20f);
+
+            if (x > -10f + camX && x <= 0f + camX)
+                x = Random.Range(-20f, -10f) + camX;
+            else if (x > 0f + camX && x < 10f + camX)
+                x = Random.Range(20f, 10f) + camX;
+            if (y > -10f + camY && y <= 0f + camY)
+                y = Random.Range(-20f, -10f) + camY;
+            else if (y > 0f + camY && y < 10f + camY)
+                y = Random.Range(20f, 10f) + camY;
+
             Instantiate(tuna, new Vector3(x, 6, y), rotation);
         }
         if (pickObject == 3)
         {
-            float x = Random.Range(camX + 10f, camX - 10f);
-            float y = Random.Range(camY + 10f, camY - 10f);
+            float x = Random.Range(camX + 20f, camX + 20f);
+            float y = Random.Range(camY + 20f, camY + 20f);
+
+            if (x > -10f + camX && x <= 0f + camX)
+                x = Random.Range(-20f, -10f) + camX;
+            else if (x > 0f + camX && x < 10f + camX)
+                x = Random.Range(20f, 10f) + camX;
+            if (y > -10f + camY && y <= 0f + camY)
+                y = Random.Range(-20f, -10f) + camY;
+            else if (y > 0f + camY && y < 10f + camY)
+                y = Random.Range(20f, 10f) + camY;
+
             Instantiate(orangeFish, new Vector3(x, 4, y), rotation);
         }
         if (pickObject == 4)
         {
-            float x = Random.Range(camX + 10f, camX - 10f);
-            float y = Random.Range(camY + 10f, camY - 10f);
+            float x = Random.Range(camX + 20f, camX + 20f);
+            float y = Random.Range(camY + 20f, camY + 20f);
+
+            if (x > -10f + camX && x <= 0f + camX)
+                x = Random.Range(-20f, -10f) + camX;
+            else if (x > 0f + camX && x < 10f + camX)
+                x = Random.Range(20f, 10f) + camX;
+            if (y > -10f + camY && y <= 0f + camY)
+                y = Random.Range(-20f, -10f) + camY;
+            else if (y > 0f + camY && y < 10f + camY)
+                y = Random.Range(20f, 10f) + camY;
+
             Instantiate(sharky, new Vector3(x, 4, y), rotation);
         }
         if (pickObject == 5)
         {
-            float x = Random.Range(camX + 10f, camX - 10f);
-            float y = Random.Range(camY + 10f, camY - 10f);
+            float x = Random.Range(camX + 20f, camX + 20f);
+            float y = Random.Range(camY + 20f, camY + 20f);
+
+            if (x > -10f + camX && x <= 0f + camX)
+                x = Random.Range(-20f, -10f) + camX;
+            else if (x > 0f + camX && x < 10f + camX)
+                x = Random.Range(20f, 10f) + camX;
+            if (y > -10f + camY && y <= 0f + camY)
+                y = Random.Range(-20f, -10f) + camY;
+            else if (y > 0f + camY && y < 10f + camY)
+                y = Random.Range(20f, 10f) + camY;
+
             Instantiate(jelly, new Vector3(x, 4, y), rotation);
         }
         if (pickObject == 6)
         {
-            float x = Random.Range(camX + 10f, camX - 10f);
-            float y = Random.Range(camY + 10f, camY - 10f);
+            float x = Random.Range(camX + 20f, camX + 20f);
+            float y = Random.Range(camY + 20f, camY + 20f);
+
+            if (x > -10f + camX && x <= 0f + camX)
+                x = Random.Range(-20f, -10f) + camX;
+            else if (x > 0f + camX && x < 10f + camX)
+                x = Random.Range(20f, 10f) + camX;
+            if (y > -10f + camY && y <= 0f + camY)
+                y = Random.Range(-20f, -10f) + camY;
+            else if (y > 0f + camY && y < 10f + camY)
+                y = Random.Range(20f, 10f) + camY;
+
             Instantiate(smallJelly, new Vector3(x, 4, y), rotation);
         }
     }
@@ -70,7 +130,7 @@ public class FishSpawner : MonoBehaviour
         {
             pickObject = Random.Range(1, 7);
             SpawnNow();
-            SpawningTime = Random.Range(0.1f, 1.5f);
+            SpawningTime = Random.Range(1.5f, 3.5f);
         }
     }
 }
