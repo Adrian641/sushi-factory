@@ -8,6 +8,9 @@ TagManager:
   - Belt
   - Algea
   - Tile
+  - Factory
+  - Green
+  - Coral
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - Water
   - UI
   - BeltLayer
-  - 
+  - Factory
   - 
   - 
   - 

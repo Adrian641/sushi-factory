@@ -94,9 +94,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4341926669199951409}
   - component: {fileID: 4921905311959919975}
-  m_Layer: 0
+  - component: {fileID: 4768653293706560279}
+  - component: {fileID: 6279324757213130554}
+  m_Layer: 7
   m_Name: extractorRL
-  m_TagString: Untagged
+  m_TagString: Factory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,3 +171,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &4768653293706560279
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166438781151877809}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.64, y: 0.64000016, z: 0.20000005}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6279324757213130554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166438781151877809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6402b41f3c0e714cb4a87bc964ed6b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  hitPoint: {x: 0, y: 0}
+  Algae: {fileID: 3684551989800858896, guid: 1f7b99cfa3a213a4e925aed6be7bddb7, type: 3}
+  Green: {fileID: 664087465625387231, guid: 103eeaa8d41214d44a98dd94773ab4a5, type: 3}
+  Coral: {fileID: 3770756098083841650, guid: dff89751c2c0b5b40ad1bec57f13f77c, type: 3}
+  SpawnSpeed: 5

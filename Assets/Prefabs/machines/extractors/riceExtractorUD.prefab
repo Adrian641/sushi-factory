@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1741723318008174361}
   - component: {fileID: 5022016476140315998}
   - component: {fileID: 5957291709948773612}
-  m_Layer: 0
+  - component: {fileID: 7981685982247020494}
+  m_Layer: 7
   m_Name: riceExtractorUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +108,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &7981685982247020494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987246891629601804}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.64, y: 0.64000016, z: 0.20000005}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4996745005204775179
 GameObject:
   m_ObjectHideFlags: 0

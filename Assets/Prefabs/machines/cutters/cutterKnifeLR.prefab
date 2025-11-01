@@ -199,9 +199,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2475907491253205666}
+  - component: {fileID: -8129339360920805714}
   m_Layer: 0
   m_Name: cutterKnifeLR
-  m_TagString: Untagged
+  m_TagString: Factory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,6 +225,27 @@ Transform:
   - {fileID: 3274747860389185918}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!65 &-8129339360920805714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9149401581916668112}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.48958045, y: 0.53174424, z: 0.13465926}
+  m_Center: {x: 0.0032815542, y: -0.03641575, z: 0.04037495}
 --- !u!1 &9171136395213821226
 GameObject:
   m_ObjectHideFlags: 0

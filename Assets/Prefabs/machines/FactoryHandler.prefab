@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2105147391127382500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6741368725019158357}
+  - component: {fileID: 8092675689181184397}
+  m_Layer: 0
+  m_Name: FactoryHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6741368725019158357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105147391127382500}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8092675689181184397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105147391127382500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb3037e2804fe24e99200ae5054e1c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectItems: {fileID: 0}
+  TypeOfMachine: 2
+  highlightedExctractor_Up: {fileID: 6292523748044354532, guid: 717e793122757ee4285d0f7a1c5a9d8b, type: 3}
+  highlightedExctractor_Down: {fileID: 5530719135283675831, guid: fb21fcbbbde283047988864df257edb6, type: 3}
+  highlightedExctractor_Left: {fileID: 7812999372621046037, guid: b89c0769dbe0dde409ce0e7a0fd42682, type: 3}
+  highlightedExctractor_Right: {fileID: 1326507678092138144, guid: 597230972eecfee468a96e44eb73a744, type: 3}
+  Exctractor_Up: {fileID: 5174183043113640922, guid: 7194f7482b82f5c428d5aa6e9a1e7337, type: 3}
+  Exctractor_Down: {fileID: 1389098474469511191, guid: 9440115c4689bd340a569ffd55830d4f, type: 3}
+  Exctractor_Left: {fileID: 9166438781151877809, guid: a7cb564f307a49d47a969a565caf4153, type: 3}
+  Exctractor_Right: {fileID: 8180132492608020971, guid: 19ddf3a5d344a8d4eb24c15a46bc064e, type: 3}
+  tagToPlaceOn: Algea
+  factoryTag: Factory
+  mainCam: {fileID: 0}
+  hitPoint: {x: 0, y: 0}
+  selectedPos: {x: 0, y: 0}
+  factoryPos: []

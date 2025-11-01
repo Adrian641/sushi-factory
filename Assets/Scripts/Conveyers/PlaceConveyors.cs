@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 
@@ -61,7 +62,7 @@ public class PlaceConveyors : MonoBehaviour
 
     void Update()
     {
-        if (selectItems.SelectBelt_1)
+        if (selectItems.SelectBelt_1 && !IsMouseOverUi())
         {
             float dt = 0;
             dt += Time.deltaTime;
@@ -261,7 +262,7 @@ public class PlaceConveyors : MonoBehaviour
         if (Physics.Raycast(ray, out RayHit))
         {
             GameObject hit = RayHit.transform.gameObject;
-            if (hit.layer != beltLayer)
+            if (hit.CompareTag("Belt"))
             {
                 GameObject hitParent = hit.transform.parent.gameObject;
                 Destroy(hitParent);
@@ -281,6 +282,10 @@ public class PlaceConveyors : MonoBehaviour
                     GameObject hitParent = hit.transform.parent.gameObject;
                     Destroy(hitParent);
                     isHandling = true;
+                }
+                if (hit.CompareTag("Factory"))
+                {
+                    conveyorLinePath = new Vector2[0];
                 }
             }
         }
@@ -398,5 +403,9 @@ public class PlaceConveyors : MonoBehaviour
             isHoldingMouse1 = true;
         else
             isHoldingMouse1 = false;
+    }
+    private bool IsMouseOverUi()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }

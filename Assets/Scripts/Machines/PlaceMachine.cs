@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.EventSystems;
+using System.Linq;
+using UnityEngine.Rendering;
 
 public class PlaceMachine : MonoBehaviour
 {
@@ -11,12 +13,18 @@ public class PlaceMachine : MonoBehaviour
 
     public int TypeOfMachine;
 
-    public GameObject exctractor_Up;
-    public GameObject exctractor_Down;
-    public GameObject exctractor_Left;
-    public GameObject exctractor_Right;
+    public GameObject highlightedExctractor_Up;
+    public GameObject highlightedExctractor_Down;
+    public GameObject highlightedExctractor_Left;
+    public GameObject highlightedExctractor_Right;
+
+    public GameObject Exctractor_Up;
+    public GameObject Exctractor_Down;
+    public GameObject Exctractor_Left;
+    public GameObject Exctractor_Right;
 
     public string tagToPlaceOn;
+    public string factoryTag;
 
     private bool isSelected;
 
@@ -24,15 +32,19 @@ public class PlaceMachine : MonoBehaviour
     public RaycastHit RayHit;
     public Ray ray;
     public Vector2 hitPoint = Vector2.zero;
+    public Vector2 mousePos = Vector2.zero;
 
     public Vector2 selectedPos = Vector2.zero;
+
+    public List<Vector2> factoryPos;
+    private int factoryPosIndex = 0;
 
     private GameObject selectPrefab;
     private GameObject selectedObject;
 
     private void Start()
     {
-        selectPrefab = exctractor_Up;
+        selectPrefab = highlightedExctractor_Up;
     }
     void Update()
     {
@@ -52,7 +64,6 @@ public class PlaceMachine : MonoBehaviour
             isSelected = false;
         if (isSelected && !IsMouseOverUi())
         {
-            Debug.Log(IsMouseOverUi());
             ray = mainCam.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] RayHit = Physics.RaycastAll(ray);
             if (RayHit != null)
@@ -68,35 +79,60 @@ public class PlaceMachine : MonoBehaviour
                         {
                             Destroy(selectedObject);
 
+                            selectedPos = hitPoint;
                             selectedObject = Instantiate(selectPrefab, new Vector3(hitPoint.x, 0f, hitPoint.y), Quaternion.identity, gameObject.transform);
                             selectedObject.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-                            selectedPos = hitPoint;
                         }
                     }
                 }
-
             }
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !factoryPos.Contains(hitPoint) && selectedPos != Vector2.zero)
             {
+                GameObject FactoryToPlace = Exctractor_Up;
+                if (selectPrefab == highlightedExctractor_Up)
+                    FactoryToPlace = Exctractor_Up;
+                else if (selectPrefab == highlightedExctractor_Right)
+                    FactoryToPlace = Exctractor_Right;
+                else if (selectPrefab == highlightedExctractor_Down)
+                    FactoryToPlace = Exctractor_Down;
+                else if (selectPrefab == highlightedExctractor_Left)
+                    FactoryToPlace = Exctractor_Left;
+
                 Destroy(selectedObject);
-                //Place Prefab
+                GameObject Factory = Instantiate(FactoryToPlace, new Vector3(hitPoint.x, 0f, hitPoint.y), Quaternion.identity, gameObject.transform);
+                Factory.transform.position = new Vector3(mousePos.x, 0.15f, mousePos.y);
+                Factory.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+                factoryPos.Add(new Vector2(Factory.transform.position.x, Factory.transform.position.z));
             }
         }
         if(IsMouseOverUi())
             Destroy(selectedObject);
+        if (Physics.Raycast(ray, out RayHit))
+        {
+            mousePos = new Vector2(MathF.Round(RayHit.point.x), MathF.Round(RayHit.point.z));
+            if (mousePos != hitPoint)
+            {
+                Destroy(selectedObject);
+                selectedPos = Vector2.zero;
+            }
+        }
 
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            DeleteObjects();
+        }
     }
 
     public void Rotate()
     {
-        if (selectPrefab == exctractor_Up)
-            selectPrefab = exctractor_Right;
-        else if (selectPrefab == exctractor_Right)
-            selectPrefab = exctractor_Down;
-        else if (selectPrefab == exctractor_Down)
-            selectPrefab = exctractor_Left;
-        else if (selectPrefab == exctractor_Left)
-            selectPrefab = exctractor_Up;
+        if (selectPrefab == highlightedExctractor_Up)
+            selectPrefab = highlightedExctractor_Right;
+        else if (selectPrefab == highlightedExctractor_Right)
+            selectPrefab = highlightedExctractor_Down;
+        else if (selectPrefab == highlightedExctractor_Down)
+            selectPrefab = highlightedExctractor_Left;
+        else if (selectPrefab == highlightedExctractor_Left)
+            selectPrefab = highlightedExctractor_Up;
         Destroy(selectedObject);
         selectedPos = Vector2.zero;
     }
@@ -104,5 +140,19 @@ public class PlaceMachine : MonoBehaviour
     private bool IsMouseOverUi()
     {
         return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    public void DeleteObjects()
+    {
+
+        if (Physics.Raycast(ray, out RayHit))
+        {
+            GameObject hit = RayHit.transform.gameObject;
+            if (hit.CompareTag(factoryTag))
+            {
+                Destroy(hit.gameObject);
+                factoryPos.Remove(new Vector2(hit.transform.position.x, hit.transform.position.z));
+            }
+        }
     }
 }

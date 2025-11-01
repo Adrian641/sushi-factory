@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6867151543082602343}
   - component: {fileID: 1086549238700544530}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SELextractorRL
-  m_TagString: Untagged
+  m_TagString: Factory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
