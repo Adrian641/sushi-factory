@@ -18,13 +18,13 @@ public class ItemsSystem : MonoBehaviour
     [SerializeField] private float itemSpacing;
     [SerializeField] private float speed;
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private List<ConveyorBeltItem> items;
+    [SerializeField] public List<ConveyorBeltItem> items;
 
     private Transform beltGroup;
 
     public Vector2[] beltPos;
 
-    private float timeBetweenUpdate = 0.01f;
+    private float timeBetweenUpdate = -1f;
     private float dt = 0;
 
     private void Awake()
@@ -61,13 +61,13 @@ public class ItemsSystem : MonoBehaviour
                 {
                     int orientation = GetType(BeltType.name);
                     if (orientation == 1)
-                        beltPos[0] = GetPos(BeltPos.name) - Vector2.up;
+                        beltPos[0] = GetPos(BeltPos.name) - (Vector2.up / 2);
                     else if (orientation == 2)
-                        beltPos[0] = GetPos(BeltPos.name) - Vector2.down;
+                        beltPos[0] = GetPos(BeltPos.name) - (Vector2.down / 2);
                     else if (orientation == 3)
-                        beltPos[0] = GetPos(BeltPos.name) - Vector2.left;
+                        beltPos[0] = GetPos(BeltPos.name) - (Vector2.left / 2);
                     else if (orientation == 4)
-                        beltPos[0] = GetPos(BeltPos.name) - Vector2.right;
+                        beltPos[0] = GetPos(BeltPos.name) - (Vector2.right / 2);
                 }
                 if (GetType(BeltType.name) > 5)
                 {
@@ -102,30 +102,50 @@ public class ItemsSystem : MonoBehaviour
                     ConveyorBeltItem beltItem = items[i];
                     Transform item = items[i].item;
 
-                    if (i > 0)
+                    //bool isOnBelt = false;
+                    //RaycastHit[] RayHit = Physics.RaycastAll(new Vector3(item.position.x, 10f, item.position.z), Vector3.down, 20f);
+                    //for (int j = 0; j < RayHit.Length; j++)
+                    //{
+                    //    Debug.Log(item.position);
+                    //    if (RayHit[i].collider.CompareTag("Belt"))
+                    //    {
+                    //        isOnBelt = true;
+                    //    }
+                    //}
+                    if (item == null)
                     {
-                        if (Vector3.Distance(item.position, items[i - 1].item.position) <= itemSpacing)
+                        items.Remove(items[i]);
+                        Destroy(item.gameObject);
+                    }
+                    else
+                    {
+
+                        if (i > 0)
                         {
-                            continue;
+                            if (Vector3.Distance(item.position, items[i - 1].item.position) <= itemSpacing)
+                            {
+                                continue;
+                            }
+                        }
+
+                        item.transform.position = Vector3.Lerp(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1), beltItem.currentLerp);
+                        float distance = Vector3.Distance(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1));
+                        beltItem.currentLerp += speed * Time.fixedDeltaTime / distance;
+
+                        if (beltItem.currentLerp >= 1)
+                        {
+                            if (beltItem.startPoint + 2 < lineRenderer.positionCount)
+                            {
+                                beltItem.currentLerp = 0;
+                                beltItem.startPoint++;
+                            }
+                            else
+                            {
+                                //Debug.Log("wallah");
+                            }
                         }
                     }
 
-                    item.transform.position = Vector3.Lerp(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1), beltItem.currentLerp);
-                    float distance = Vector3.Distance(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1));
-                    beltItem.currentLerp += speed * Time.fixedDeltaTime / distance;
-
-                    if (beltItem.currentLerp >= 1)
-                    {
-                        if (beltItem.startPoint + 2 < lineRenderer.positionCount)
-                        {
-                            beltItem.currentLerp = 0;
-                            beltItem.startPoint++;
-                        }
-                        else
-                        {
-                            //Debug.Log("wallah");
-                        }
-                    }
                 }
             }
         }

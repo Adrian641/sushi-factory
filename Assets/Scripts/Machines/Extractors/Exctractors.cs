@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Exctractors : MonoBehaviour
 {
+    public ItemsSystem itemsSystem;
+
     public Camera mainCam;
     public RaycastHit RayHit;
     public Ray ray;
@@ -33,9 +35,6 @@ public class Exctractors : MonoBehaviour
         else
             Destroy(gameObject);
 
-        // x + 1567.53
-        // z - 4.21025
-        //realPos = new Vector3(transform.position.x + 1567.53f, 0.15f, transform.position.z - 4.21025f);
         RaycastHit[] RayHit = Physics.RaycastAll(new Vector3(transform.position.x, 10f, transform.position.z), Vector3.down, 20f);
         for (int i = 0; i < RayHit.Length; i++)
         {
@@ -45,14 +44,16 @@ public class Exctractors : MonoBehaviour
                 itemToProduce = 2;
             if (RayHit[i].collider.CompareTag("Coral"))
                 itemToProduce = 3;
+
         }
     }
-    void Update()
+    void FixedUpdate()
     {
         dt += Time.deltaTime;
 
         if (dt > SpawnSpeed)
         {
+            dt = 0;
             GameObject objectToSpawn = null;
             if (itemToProduce == 1)
                 objectToSpawn = Algae;
@@ -61,8 +62,30 @@ public class Exctractors : MonoBehaviour
             else if (itemToProduce == 3)
                 objectToSpawn = Coral;
 
-            GameObject item = Instantiate(objectToSpawn,new Vector3(transform.position.x - dir.x, 0.2f, transform.position.z + dir.y), Quaternion.identity);
+            GameObject item = Instantiate(objectToSpawn, new Vector3(transform.position.x - (dir.x / 1.2f), 0f, transform.position.z + (dir.y / 1.2f)), Quaternion.identity);
             item.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+
+            ItemsSystem.ConveyorBeltItem newConveyorItem = new ItemsSystem.ConveyorBeltItem();
+            newConveyorItem.item = item.transform;
+            newConveyorItem.currentLerp = 0f;
+            newConveyorItem.startPoint = 0;
+
+            bool isConnected = false;
+            RaycastHit[] raycastHits = Physics.RaycastAll(new Vector3(transform.position.x - dir.x, 10f, transform.position.z + dir.y), Vector3.down, 20f);
+            for (int i = 0; i < raycastHits.Length; ++i)
+            {
+                if (raycastHits[i].collider.CompareTag("Belt"))
+                {
+                    Transform conveyorPos = raycastHits[i].collider.transform.parent;
+                    Transform conveyorGroup = conveyorPos.parent;
+                    itemsSystem = conveyorGroup.gameObject.GetComponent<ItemsSystem>();
+                    isConnected = true;
+                }
+            }
+            if (!isConnected)
+                DestroyImmediate(item);
+            else 
+                itemsSystem.items.Add(newConveyorItem);
         }
     }
 }

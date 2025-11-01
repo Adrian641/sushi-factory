@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6685632227110929110}
   - component: {fileID: 7958381394321906114}
+  - component: {fileID: -1728889460269084683}
   m_Layer: 0
   m_Name: cutterKnifeDU
   m_TagString: Factory
@@ -56,6 +57,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.48958045, y: 0.53174424, z: 0.13465926}
   m_Center: {x: 0.011242855, y: -0.0037756662, z: 0.034439217}
+--- !u!114 &-1728889460269084683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986367890360213465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e875facaa06e384bb89ff23569c6231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  code: 
 --- !u!1 &4237909257700130290
 GameObject:
   m_ObjectHideFlags: 0

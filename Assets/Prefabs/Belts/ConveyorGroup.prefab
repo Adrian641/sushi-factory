@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc164d5a09845c4398a480167bb6e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSpacing: 0
-  speed: 0
+  itemSpacing: 0.5
+  speed: 1
   lineRenderer: {fileID: -4262377464882502401}
   items: []
   beltPos: []

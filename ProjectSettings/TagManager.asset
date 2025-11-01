@@ -11,6 +11,8 @@ TagManager:
   - Factory
   - Green
   - Coral
+  - Undefined
+  - Item
   layers:
   - Default
   - TransparentFX
