@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 3845341944900743077}
   - component: {fileID: 5878897134782831149}
   - component: {fileID: 286202679772108495}
+  - component: {fileID: -5308882644258425348}
   m_Layer: 0
   m_Name: bigJelly
   m_TagString: Untagged
@@ -213,3 +214,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5308882644258425348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552523977025057101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347877b6c94f76944b4a403d667375c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  camX: 0
+  camY: 0

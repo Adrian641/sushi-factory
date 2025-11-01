@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5588674802434227589}
   - component: {fileID: 9155240049494596251}
   - component: {fileID: 4434421087155720410}
+  - component: {fileID: -2397930412776245542}
   m_Layer: 0
   m_Name: sharkySwim
   m_TagString: Untagged
@@ -107,6 +108,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2397930412776245542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5951568772436206775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347877b6c94f76944b4a403d667375c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  camX: 0
+  camY: 0
 --- !u!1 &8133592713852976223
 GameObject:
   m_ObjectHideFlags: 0

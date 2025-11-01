@@ -32,7 +32,7 @@ public class CameraSystem : MonoBehaviour
             //Debug.Log(rotateDirX);
 
             rotateDirY += Input.GetAxis("Mouse Y") * sensitivity;
-            Debug.Log(rotateDirY);
+            //Debug.Log(rotateDirY);
         }
 
         transform.Rotate(Vector3.up, rotateDirX * sensitivity * Time.deltaTime);
