@@ -45,14 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc164d5a09845c4398a480167bb6e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conveyors: {fileID: 0}
   itemSpacing: 0
   speed: 0
   lineRenderer: {fileID: -4262377464882502401}
-  items:
-  - item: {fileID: 0}
-    currentLerp: 0
-    startPoint: 0
+  items: []
   beltPos: []
 --- !u!120 &-4262377464882502401
 LineRenderer:

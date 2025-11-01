@@ -9,6 +9,8 @@ using UnityEngine.XR;
 
 public class PlaceConveyors : MonoBehaviour
 {
+    public SelectItems selectItems;
+
     public bool isHoldingLeftShift = false;
     public bool isHoldingMouse0 = false;
     public bool isStartClickingMouse0 = false;
@@ -59,84 +61,91 @@ public class PlaceConveyors : MonoBehaviour
 
     void Update()
     {
-        float dt = 0;
-        dt += Time.deltaTime;
-        if (dt > 1)
+        if (selectItems.SelectBelt_1)
         {
-            isHandling = true;
-            dt = 0;
-        }
-        CheckUsersInputs();
-
-        if (isStartClickingMouse0)
-        {
-            SeclectedTileGroup = new GameObject("SelectedTilesGroup");
-            SeclectedTileGroup.transform.parent = ConveyorBelts.transform;
-        }
-
-        if (isReleasingMouse0)
-        {
-            DestroyImmediate(SeclectedTileGroup);
-            isHandling = true;
-
-            if (!isHoldingLeftShift)
-                conveyorLinePath = CreateConveyorLine(mousePositions, mousePositionIndex);
-            else
-                conveyorLinePath = CreateConveyorLine(conveyorLinePath, conveyorLinePath.Length);
-
-            if(conveyorLinePath != null)
+            float dt = 0;
+            dt += Time.deltaTime;
+            if (dt > 1)
             {
-                DeleteObjects(conveyorLinePath);
-                if (conveyorLinePath[0] != new Vector2(-1f, -1f))
-                {
-                    GameObject ConveyorGroup = Instantiate(ConveyorBeltsGroup);
-                    ConveyorGroup.transform.parent = ConveyorBelts.transform;
-                    conveyorGroupNumber++;
-                    for (int i = 0; i < conveyorLinePath.Length / 2; i++)
-                    {
-                    
-                        GameObject ConveyerPos = new GameObject($"{conveyorLinePath[i].x},{conveyorLinePath[i].y},");
-                        ConveyerPos.transform.parent = ConveyorGroup.transform;
-                        InstantiateBelt(conveyorLinePath[conveyorLinePath.Length / 2 + i].x, ConveyerPos, conveyorLinePath[i]);
-                    }
-                }
-                PutToZero(mousePositions);
-                mousePositionIndex = 0;
-
-                if (toggleFlip)
-                    toggleFlip = false;
                 isHandling = true;
+                dt = 0;
             }
-        }
+            CheckUsersInputs();
 
-        if (isHoldingMouse0 || isHoldingMouse1)
-        {
-            ray = mainCam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RayHit))
-                Hitpoint = new Vector2(MathF.Round(RayHit.point.x), MathF.Round(RayHit.point.z));
-        }
-
-        if (isHoldingMouse0 && mousePositionIndex < arrayLimits)
-        {
-
-            if (isHoldingLeftShift)
+            if (isStartClickingMouse0)
             {
-                DestroyImmediate(SeclectedTileGroup);
-                conveyorLinePath = CreateStraightConveyorLine(mousePositions[0], Hitpoint);
                 SeclectedTileGroup = new GameObject("SelectedTilesGroup");
                 SeclectedTileGroup.transform.parent = ConveyorBelts.transform;
-                HighLightConveyorPath(conveyorLinePath, mousePositionIndex);
             }
-            if (!mousePositions.Contains(Hitpoint))
+
+            if (isReleasingMouse0)
             {
-                mousePositions[mousePositionIndex] = Hitpoint;
+                DestroyImmediate(SeclectedTileGroup);
+                isHandling = true;
+
                 if (!isHoldingLeftShift)
-                    HighLightConveyorPath(mousePositions, mousePositionIndex);
-                mousePositionIndex++;
+                    conveyorLinePath = CreateConveyorLine(mousePositions, mousePositionIndex);
+                else
+                    conveyorLinePath = CreateConveyorLine(conveyorLinePath, conveyorLinePath.Length);
+
+                if (conveyorLinePath != null)
+                {
+                    DeleteObjects(conveyorLinePath);
+                    if (conveyorLinePath[0] != new Vector2(-1f, -1f))
+                    {
+                        GameObject ConveyorGroup = Instantiate(ConveyorBeltsGroup);
+                        ConveyorGroup.transform.parent = ConveyorBelts.transform;
+                        conveyorGroupNumber++;
+                        for (int i = 0; i < conveyorLinePath.Length / 2; i++)
+                        {
+
+                            GameObject ConveyerPos = new GameObject($"{conveyorLinePath[i].x},{conveyorLinePath[i].y},");
+                            ConveyerPos.transform.parent = ConveyorGroup.transform;
+                            InstantiateBelt(conveyorLinePath[conveyorLinePath.Length / 2 + i].x, ConveyerPos, conveyorLinePath[i]);
+                        }
+                    }
+                    PutToZero(mousePositions);
+                    mousePositionIndex = 0;
+
+                    if (toggleFlip)
+                        toggleFlip = false;
+                    isHandling = true;
+                }
             }
+
+            if (isHoldingMouse0 || isHoldingMouse1)
+            {
+                ray = mainCam.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RayHit))
+                    Hitpoint = new Vector2(MathF.Round(RayHit.point.x), MathF.Round(RayHit.point.z));
+            }
+
+            if (isHoldingMouse0 && mousePositionIndex < arrayLimits)
+            {
+
+                if (isHoldingLeftShift)
+                {
+                    DestroyImmediate(SeclectedTileGroup);
+                    conveyorLinePath = CreateStraightConveyorLine(mousePositions[0], Hitpoint);
+                    SeclectedTileGroup = new GameObject("SelectedTilesGroup");
+                    SeclectedTileGroup.transform.parent = ConveyorBelts.transform;
+                    HighLightConveyorPath(conveyorLinePath, mousePositionIndex);
+                }
+                if (!mousePositions.Contains(Hitpoint))
+                {
+                    mousePositions[mousePositionIndex] = Hitpoint;
+                    if (!isHoldingLeftShift)
+                        HighLightConveyorPath(mousePositions, mousePositionIndex);
+                    mousePositionIndex++;
+                }
+            }
+            if (isHoldingMouse1)
+                DeleteObjects();
         }
-        if (isHoldingMouse1)
-            DeleteObjects();
+        else
+        {
+            DestroyImmediate (SeclectedTileGroup);
+        }
     }
     void HighLightConveyorPath(Vector2[] arrayToHighLight, int arrayIndex)
     {

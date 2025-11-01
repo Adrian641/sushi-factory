@@ -14,7 +14,6 @@ public class ItemsSystem : MonoBehaviour
         public float currentLerp;
         public int startPoint;
     }
-    public ConveyorHandler conveyors;
 
     [SerializeField] private float itemSpacing;
     [SerializeField] private float speed;
@@ -96,33 +95,36 @@ public class ItemsSystem : MonoBehaviour
                 lineRenderer.SetPosition(i, new Vector3(beltPos[i].x, 0f, beltPos[i].y));
             }
 
-            for (int i = 0; i < items.Count; i++)
+            if (items.Count > 0)
             {
-                ConveyorBeltItem beltItem = items[i];
-                Transform item = items[i].item;
-
-                if (i > 0)
+                for (int i = 0; i < items.Count; i++)
                 {
-                    if (Vector3.Distance(item.position, items[i - 1].item.position) <= itemSpacing)
-                    {
-                        continue;
-                    }
-                }
+                    ConveyorBeltItem beltItem = items[i];
+                    Transform item = items[i].item;
 
-                item.transform.position = Vector3.Lerp(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1), beltItem.currentLerp);
-                float distance = Vector3.Distance(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1));
-                beltItem.currentLerp += speed * Time.fixedDeltaTime / distance;
-
-                if (beltItem.currentLerp >= 1)
-                {
-                    if (beltItem.startPoint + 2 < lineRenderer.positionCount)
+                    if (i > 0)
                     {
-                        beltItem.currentLerp = 0;
-                        beltItem.startPoint++;
+                        if (Vector3.Distance(item.position, items[i - 1].item.position) <= itemSpacing)
+                        {
+                            continue;
+                        }
                     }
-                    else
+
+                    item.transform.position = Vector3.Lerp(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1), beltItem.currentLerp);
+                    float distance = Vector3.Distance(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1));
+                    beltItem.currentLerp += speed * Time.fixedDeltaTime / distance;
+
+                    if (beltItem.currentLerp >= 1)
                     {
-                        //Debug.Log("wallah");
+                        if (beltItem.startPoint + 2 < lineRenderer.positionCount)
+                        {
+                            beltItem.currentLerp = 0;
+                            beltItem.startPoint++;
+                        }
+                        else
+                        {
+                            //Debug.Log("wallah");
+                        }
                     }
                 }
             }
