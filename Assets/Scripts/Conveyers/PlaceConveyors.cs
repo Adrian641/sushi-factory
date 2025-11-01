@@ -105,6 +105,10 @@ public class PlaceConveyors : MonoBehaviour
                             InstantiateBelt(conveyorLinePath[conveyorLinePath.Length / 2 + i].x, ConveyerPos, conveyorLinePath[i]);
                         }
                     }
+                    else
+                    {
+                        //errorMessage overlap / speed
+                    }
                     PutToZero(mousePositions);
                     mousePositionIndex = 0;
 
@@ -145,7 +149,7 @@ public class PlaceConveyors : MonoBehaviour
         }
         else
         {
-            DestroyImmediate (SeclectedTileGroup);
+            DestroyImmediate(SeclectedTileGroup);
         }
     }
     void HighLightConveyorPath(Vector2[] arrayToHighLight, int arrayIndex)
@@ -286,6 +290,7 @@ public class PlaceConveyors : MonoBehaviour
                 if (hit.CompareTag("Factory"))
                 {
                     conveyorLinePath = new Vector2[0];
+                    // error message over factories
                 }
             }
         }
