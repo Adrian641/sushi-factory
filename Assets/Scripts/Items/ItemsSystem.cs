@@ -7,46 +7,122 @@ using UnityEngine;
 
 public class ItemsSystem : MonoBehaviour
 {
+    [System.Serializable]
+    public class ConveyorBeltItem
+    {
+        public Transform item;
+        public float currentLerp;
+        public int startPoint;
+    }
     public ConveyorHandler conveyors;
 
-    private float updatePerSec = 0.1f;
+    [SerializeField] private float itemSpacing;
+    [SerializeField] private float speed;
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private List<ConveyorBeltItem> items;
+
+    private Transform beltGroup;
+
+    public Vector2[] beltPos;
+
+    private float timeBetweenUpdate = 0.01f;
     private float dt = 0;
 
-    public Vector3[] allCornerAndIndex = new Vector3[500];
-
-    public Transform ConveyorBeltsTr;
-
-    private void FixedUpdate()
+    private void Awake()
     {
-        dt += Time.fixedDeltaTime;
+        beltGroup = this.transform;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (dt > updatePerSec)
+        dt += Time.fixedDeltaTime;
+
+        if (dt > timeBetweenUpdate)
         {
             dt = 0;
 
-            for (int i = 0; i < conveyors.allEndPoints.Count; i++)
+            int amountOfPos = 2;
+            for (int i = 0; i < beltGroup.childCount; i++)
             {
-                //Debug.Log(conveyors.allEndPoints[i]);
-                //Debug.Log(conveyors.allStartPoints[i]);
-            }
-            for (int i = 0; i < ConveyorBeltsTr.childCount; i++)
-            {
-                Transform group = ConveyorBeltsTr.transform.GetChild(i);
-                for (int j = 0; j <  group.childCount; j++)
+                Transform BeltPos = beltGroup.GetChild(i);
+                Transform BeltType = BeltPos.GetChild(0);
+
+                if (GetType(BeltType.name) > 5)
                 {
-                    Transform pos = group.transform.GetChild(j);
-                    if (pos.childCount != 0)
+                    amountOfPos++;
+                }
+            }
+            beltPos = new Vector2[amountOfPos];
+            int amountOfCorners = 0;
+            for (int i = 0; i < beltGroup.childCount; i++)
+            {
+                Transform BeltPos = beltGroup.GetChild(i);
+                Transform BeltType = BeltPos.GetChild(0);
+                if (i == 0)
+                {
+                    int orientation = GetType(BeltType.name);
+                    if (orientation == 1)
+                        beltPos[0] = GetPos(BeltPos.name) - Vector2.up;
+                    else if (orientation == 2)
+                        beltPos[0] = GetPos(BeltPos.name) - Vector2.down;
+                    else if (orientation == 3)
+                        beltPos[0] = GetPos(BeltPos.name) - Vector2.left;
+                    else if (orientation == 4)
+                        beltPos[0] = GetPos(BeltPos.name) - Vector2.right;
+                }
+                if (GetType(BeltType.name) > 5)
+                {
+                    amountOfCorners++;
+                    beltPos[amountOfCorners] = GetPos(BeltPos.name);
+                }
+                if (i == beltGroup.childCount - 1)
+                {
+                    int orientation = GetType(BeltType.name);
+                    if (orientation == 1)
+                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + Vector2.up;
+                    else if (orientation == 2)
+                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + Vector2.down;
+                    else if (orientation == 3)
+                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + Vector2.left;
+                    else if (orientation == 4)
+                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + Vector2.right;
+                }
+            }
+
+
+            lineRenderer.positionCount = beltPos.Length;
+            for (int i = 0; i < beltPos.Length; i++)
+            {
+                lineRenderer.SetPosition(i, new Vector3(beltPos[i].x, 0f, beltPos[i].y));
+            }
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                ConveyorBeltItem beltItem = items[i];
+                Transform item = items[i].item;
+
+                if (i > 0)
+                {
+                    if (Vector3.Distance(item.position, items[i - 1].item.position) <= itemSpacing)
                     {
-                        Transform type = pos.transform.GetChild(0);
-                        if (GetType(type.gameObject.name) > 5)
-                        {
-                            Vector2 cornerPos = GetPos(pos.gameObject.name);
-                            allCornerAndIndex[i] = new Vector3(cornerPos.x, i, cornerPos.y);
-                            Debug.Log(allCornerAndIndex[i]);
-                        }
+                        continue;
+                    }
+                }
+
+                item.transform.position = Vector3.Lerp(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1), beltItem.currentLerp);
+                float distance = Vector3.Distance(lineRenderer.GetPosition(beltItem.startPoint), lineRenderer.GetPosition(beltItem.startPoint + 1));
+                beltItem.currentLerp += speed * Time.fixedDeltaTime / distance;
+
+                if (beltItem.currentLerp >= 1)
+                {
+                    if (beltItem.startPoint + 2 < lineRenderer.positionCount)
+                    {
+                        beltItem.currentLerp = 0;
+                        beltItem.startPoint++;
+                    }
+                    else
+                    {
+                        //Debug.Log("wallah");
                     }
                 }
             }

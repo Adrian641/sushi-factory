@@ -38,6 +38,8 @@ public class ConveyorHandler : MonoBehaviour
     public GameObject PrefabBelt_Right_Up;
     public GameObject PrefabBelt_Right_Down;
 
+    public GameObject ConveyorBeltsGroup;
+
     void Start()
     {
         conveyorBelts = this.transform;
@@ -152,7 +154,7 @@ public class ConveyorHandler : MonoBehaviour
             Transform beltsTransform = conveyorGroupX.transform.GetChild(conveyorGroupX.childCount - 1);
             GameObject belt = beltsTransform.gameObject;
 
-            GameObject NewConveyorGroupX = new GameObject($"conveyorGroup{-1}");
+            GameObject NewConveyorGroupX = Instantiate(ConveyorBeltsGroup);
             NewConveyorGroupX.transform.parent = this.transform;
 
             bool inCopyMode = false;

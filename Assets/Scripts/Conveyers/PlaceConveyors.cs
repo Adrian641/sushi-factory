@@ -50,6 +50,8 @@ public class PlaceConveyors : MonoBehaviour
 
     public GameObject ConveyorBelts;
 
+    public GameObject ConveyorBeltsGroup;
+
     void Start()
     {
         mousePositions = new Vector2[arrayLimits];
@@ -87,7 +89,7 @@ public class PlaceConveyors : MonoBehaviour
                 DeleteObjects(conveyorLinePath);
                 if (conveyorLinePath[0] != new Vector2(-1f, -1f))
                 {
-                    GameObject ConveyorGroup = new GameObject($"conveyorGroup{conveyorGroupNumber}");
+                    GameObject ConveyorGroup = Instantiate(ConveyorBeltsGroup);
                     ConveyorGroup.transform.parent = ConveyorBelts.transform;
                     conveyorGroupNumber++;
                     for (int i = 0; i < conveyorLinePath.Length / 2; i++)
