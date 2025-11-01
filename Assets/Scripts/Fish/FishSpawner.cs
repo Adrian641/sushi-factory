@@ -5,7 +5,7 @@ using UnityEngine;
 public class FishSpawner : MonoBehaviour
 {
     public float SpawningTime;
-    public GameObject ToSpawn1, ToSpawn2, ToSpawn3, ToSpawn4, ToSpawn5, ToSpawn6;
+    public GameObject salmon, tuna, orangeFish, sharky, jelly, smallJelly;
     public int pickObject;
 
     public GameObject mainCam;
@@ -15,7 +15,7 @@ public class FishSpawner : MonoBehaviour
 
     void Start()
     {
-        SpawningTime = Random.Range(2.5f, 5.5f);
+        SpawningTime = Random.Range(0.1f, 1.5f);
     }
 
     void SpawnNow()
@@ -29,37 +29,37 @@ public class FishSpawner : MonoBehaviour
         {
             float x = Random.Range(camX + 10f, camX - 10f);
             float y = Random.Range(camY + 10f, camY - 10f);
-            Instantiate(ToSpawn1, new Vector3(x, 4, y), rotation);
+            Instantiate(salmon, new Vector3(x, 6, y), rotation);
         }
         if (pickObject == 2)
         {
             float x = Random.Range(camX + 10f, camX - 10f);
             float y = Random.Range(camY + 10f, camY - 10f);
-            Instantiate(ToSpawn2, new Vector3(x, 4, y), rotation);
+            Instantiate(tuna, new Vector3(x, 6, y), rotation);
         }
         if (pickObject == 3)
         {
             float x = Random.Range(camX + 10f, camX - 10f);
             float y = Random.Range(camY + 10f, camY - 10f);
-            Instantiate(ToSpawn3, new Vector3(x, 4, y), rotation);
+            Instantiate(orangeFish, new Vector3(x, 4, y), rotation);
         }
         if (pickObject == 4)
         {
             float x = Random.Range(camX + 10f, camX - 10f);
             float y = Random.Range(camY + 10f, camY - 10f);
-            Instantiate(ToSpawn4, new Vector3(x, 4, y), rotation);
+            Instantiate(sharky, new Vector3(x, 4, y), rotation);
         }
         if (pickObject == 5)
         {
             float x = Random.Range(camX + 10f, camX - 10f);
             float y = Random.Range(camY + 10f, camY - 10f);
-            Instantiate(ToSpawn5, new Vector3(x, 4, y), rotation);
+            Instantiate(jelly, new Vector3(x, 4, y), rotation);
         }
         if (pickObject == 6)
         {
             float x = Random.Range(camX + 10f, camX - 10f);
             float y = Random.Range(camY + 10f, camY - 10f);
-            Instantiate(ToSpawn6, new Vector3(x, 4, y), rotation);
+            Instantiate(smallJelly, new Vector3(x, 4, y), rotation);
         }
     }
 
@@ -70,7 +70,7 @@ public class FishSpawner : MonoBehaviour
         {
             pickObject = Random.Range(1, 7);
             SpawnNow();
-            SpawningTime = Random.Range(2.5f, 5.5f);
+            SpawningTime = Random.Range(0.1f, 1.5f);
         }
     }
 }

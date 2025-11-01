@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update()

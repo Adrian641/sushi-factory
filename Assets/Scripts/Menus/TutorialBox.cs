@@ -16,13 +16,10 @@ public class TutorialBox : MonoBehaviour
 
     private int index;
 
-    AudioManager AudioManager;
-
     void Start()
     {
         textComponent.text = string.Empty;
         StartDialog();
-        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -34,7 +31,6 @@ public class TutorialBox : MonoBehaviour
             if (textComponent.text == lines[index])
             {
                 NextLine();
-                AudioManager.PlaySFX(AudioManager.UIclick);
             }
             else
             {
