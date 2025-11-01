@@ -55,6 +55,10 @@ public class PlaceConveyors : MonoBehaviour
 
     public GameObject ConveyorBeltsGroup;
 
+    public GameObject ErrorBeltImpossible;
+    public GameObject ErrorBeltOverFactory;
+    public float ErrorActiveTime = 30f;
+
     void Start()
     {
         mousePositions = new Vector2[arrayLimits];
