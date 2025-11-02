@@ -1259,6 +1259,11 @@ MonoBehaviour:
   hitPoint: {x: 0, y: 0}
   cagePos: {x: 0, y: 0, z: 0}
   fishNet: {fileID: 3920254523036613921, guid: 7cc390b80a3227f45a99643e36f44e15, type: 3}
+--- !u!1 &99268865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1027601848495467752, guid: b847bf4ff9e38cb40a21cbd23a6ff2b0, type: 3}
+  m_PrefabInstance: {fileID: 5971815555589390905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &100954649
 GameObject:
   m_ObjectHideFlags: 0
@@ -28810,16 +28815,36 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7755216851646757641, guid: b847bf4ff9e38cb40a21cbd23a6ff2b0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1027601848495467752, guid: b847bf4ff9e38cb40a21cbd23a6ff2b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5971815555589390907}
   m_SourcePrefab: {fileID: 100100000, guid: b847bf4ff9e38cb40a21cbd23a6ff2b0, type: 3}
 --- !u!4 &5971815555589390906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2133685114165680590, guid: b847bf4ff9e38cb40a21cbd23a6ff2b0, type: 3}
   m_PrefabInstance: {fileID: 5971815555589390905}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5971815555589390907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99268865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288b626c3bfd3ee41b881074c3756d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinText: {fileID: 9992460}
 --- !u!1001 &8563998424396238399
 PrefabInstance:
   m_ObjectHideFlags: 0

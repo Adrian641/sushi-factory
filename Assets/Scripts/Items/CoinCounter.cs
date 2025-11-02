@@ -17,4 +17,15 @@ public class CoinCounter : MonoBehaviour
         coinCount += amount;
         coinText.text = coinCount.ToString();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Item"))
+        {
+            AddCoins(1);
+            Destroy(other.gameObject);
+            Debug.Log("triggerts");
+        }  
+    }
+
 }
