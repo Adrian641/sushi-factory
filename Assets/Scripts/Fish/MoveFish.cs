@@ -65,16 +65,5 @@ public class MoveFish : MonoBehaviour
             transform.position = endPos;
             Destroy(gameObject);
         }
-
-        //distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), endPos);
-        //fractionOfJourney += speed * Time.deltaTime / distance;
-
-        //transform.position = Vector3.Lerp(startPos, endPos, fractionOfJourney);
-
-        //if (fractionOfJourney >= 1.0f)
-        //{
-        //    transform.position = endPos;
-        //    Destroy(gameObject);
-        //}
     }
 }

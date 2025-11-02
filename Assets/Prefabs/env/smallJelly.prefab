@@ -123,7 +123,7 @@ MonoBehaviour:
   mainCam: {fileID: 0}
   camX: 0
   camY: 0
-  speed: 3
+  speed: 2
 --- !u!1 &2069346207352260163
 GameObject:
   m_ObjectHideFlags: 0

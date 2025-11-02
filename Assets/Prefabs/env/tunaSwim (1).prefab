@@ -229,4 +229,4 @@ MonoBehaviour:
   mainCam: {fileID: 0}
   camX: 0
   camY: 0
-  speed: 4
+  speed: 3

@@ -8031,7 +8031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1120951075708488773, guid: 8707fb52feaf85a4d87a366701cece33, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 60
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1120951075708488773, guid: 8707fb52feaf85a4d87a366701cece33, type: 3}
       propertyPath: m_Lens.FarClipPlane
@@ -8111,7 +8111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5907515695964398165, guid: 8707fb52feaf85a4d87a366701cece33, type: 3}
       propertyPath: field of view
-      value: 60
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5907515695964398165, guid: 8707fb52feaf85a4d87a366701cece33, type: 3}
       propertyPath: far clip plane
@@ -17291,7 +17291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1355079955
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26507,7 +26507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1924565341
 RectTransform:
   m_ObjectHideFlags: 0
