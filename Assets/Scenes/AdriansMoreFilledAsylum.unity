@@ -15,11 +15,11 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_FogColor: {r: 0, g: 1, b: 0.98039216, a: 1}
+  m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogEnd: 60
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -1257,6 +1257,7 @@ MonoBehaviour:
   placeFishExtractors: {fileID: 89298630}
   mainCam: {fileID: 1705896537}
   hitPoint: {x: 0, y: 0}
+  cagePos: {x: 0, y: 0, z: 0}
   fishNet: {fileID: 3920254523036613921, guid: 7cc390b80a3227f45a99643e36f44e15, type: 3}
 --- !u!1 &100954649
 GameObject:
@@ -1367,11 +1368,11 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 588450670}
-  m_Father: {fileID: 550848931}
+  m_Father: {fileID: 1340473931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 156.33333, y: -36.333332}
+  m_AnchoredPosition: {x: -25.000015, y: 261.56433}
   m_SizeDelta: {x: 16, y: 18}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &107196090
@@ -2232,7 +2233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &182803677
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3623,12 +3624,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -7245,8 +7246,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 107196089}
+  m_Children: []
   m_Father: {fileID: 285725527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -12780,7 +12780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1051946180
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13821,7 +13821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -116, y: -139.20001}
+  m_AnchoredPosition: {x: -116.000244, y: -139.20001}
   m_SizeDelta: {x: -1524.2253, y: -1014.36847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1145582653
@@ -17035,6 +17035,7 @@ RectTransform:
   - {fileID: 613319074}
   - {fileID: 1850120464}
   - {fileID: 1100934934}
+  - {fileID: 107196089}
   m_Father: {fileID: 1336286275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -19416,7 +19417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -116, y: -67.20007}
+  m_AnchoredPosition: {x: -116.000244, y: -67.20007}
   m_SizeDelta: {x: -1524.2253, y: -1014.36847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1534732853
@@ -20392,7 +20393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -116, y: -212.20001}
+  m_AnchoredPosition: {x: -116.000244, y: -212.20001}
   m_SizeDelta: {x: -1524.2253, y: -1014.36847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598209336
@@ -23873,7 +23874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -116, y: 1.8000488}
+  m_AnchoredPosition: {x: -116.000244, y: 1.8000488}
   m_SizeDelta: {x: -1524.2253, y: -1014.36847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844144723

@@ -32,7 +32,7 @@ public class CameraSystem : MonoBehaviour
 
         float rotateDirX = 0f;
         float rotateDirY = 0f;
-        float sensitivity = 20f;
+        float sensitivity = 15f;
         if (Input.GetKey(KeyCode.Mouse2))
         {
             rotateDirX += Input.GetAxis("Mouse X") * sensitivity;
