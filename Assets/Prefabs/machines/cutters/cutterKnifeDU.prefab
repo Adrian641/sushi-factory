@@ -69,7 +69,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e875facaa06e384bb89ff23569c6231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemsSystem: {fileID: 0}
   code: 
+  dir: {x: 0, y: 0}
+  error: 0
+  greenCut01: {fileID: 7849479370701413394, guid: 0d691ef9a49b03b4c80804b018b2508a, type: 3}
+  coralCut02: {fileID: 8631259697005592024, guid: e00ec6ec4eda0184f8b22f97efcb5774, type: 3}
 --- !u!1 &4237909257700130290
 GameObject:
   m_ObjectHideFlags: 0

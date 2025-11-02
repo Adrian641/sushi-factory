@@ -1,27 +1,32 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
-using UnityEngine.EventSystems;
-using System.Linq;
 using UnityEngine.Rendering;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
-public class PlaceMachine : MonoBehaviour
+public class PlaceFishExtractor : MonoBehaviour
 {
     public SelectItems selectItems;
 
     public int TypeOfMachine;
 
-    public GameObject highlightedExctractor_Up;
-    public GameObject highlightedExctractor_Down;
-    public GameObject highlightedExctractor_Left;
-    public GameObject highlightedExctractor_Right;
+    public GameObject tunaHighlightedExctractor_Up;
+    public GameObject tunaHighlightedExctractor_Down;
+    public GameObject tunaHighlightedExctractor_Left;
+    public GameObject tunaHighlightedExctractor_Right;
+    public GameObject salmonHighlightedExctractor_Up;
+    public GameObject salmonHighlightedExctractor_Down;
+    public GameObject salmonHighlightedExctractor_Left;
+    public GameObject salmonHighlightedExctractor_Right;
 
-    public GameObject Exctractor_Up;
-    public GameObject Exctractor_Down;
-    public GameObject Exctractor_Left;
-    public GameObject Exctractor_Right;
+    public GameObject tunaExctractor_Up;
+    public GameObject tunaExctractor_Down;
+    public GameObject tunaExctractor_Left;
+    public GameObject tunaExctractor_Right;
+    public GameObject salmonExctractor_Up;
+    public GameObject salmonExctractor_Down;
+    public GameObject salmonExctractor_Left;
+    public GameObject salmonExctractor_Right;
 
     public string tagToPlaceOn;
     public string factoryTag;
@@ -47,14 +52,14 @@ public class PlaceMachine : MonoBehaviour
 
     private void Start()
     {
-        selectPrefab = highlightedExctractor_Up;
+        selectPrefab = salmonExctractor_Left;
     }
     void Update()
     {
         if (selectItems.SelectExtractor_2 && TypeOfMachine == 2)
             isSelected = true;
         else if (selectItems.SelectFishNet_3 && TypeOfMachine == 3)
-            isSelected = true;
+            isFishNet = true;
         else if (selectItems.SelectRiceField_4 && TypeOfMachine == 4)
             isSelected = true;
         else if (selectItems.SelectCutter_5 && TypeOfMachine == 5)
@@ -62,10 +67,10 @@ public class PlaceMachine : MonoBehaviour
         else if (selectItems.SelectStacker_6 && TypeOfMachine == 6)
             isSelected = true;
         else if (selectItems.SelectRoller_7 && TypeOfMachine == 7)
-            isFishNet = true;
+            isSelected = true;
         else
             isSelected = false;
-        if (isSelected && !IsMouseOverUi())
+        if (isSelected && !IsMouseOverUi() && !isFishNet)
         {
             ray = mainCam.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] RayHit = Physics.RaycastAll(ray);
@@ -91,15 +96,30 @@ public class PlaceMachine : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Mouse0) && !factoryPos.Contains(hitPoint) && selectedPos != Vector2.zero)
             {
-                GameObject FactoryToPlace = Exctractor_Up;
-                if (selectPrefab == highlightedExctractor_Up)
-                    FactoryToPlace = Exctractor_Up;
-                else if (selectPrefab == highlightedExctractor_Right)
-                    FactoryToPlace = Exctractor_Right;
-                else if (selectPrefab == highlightedExctractor_Down)
-                    FactoryToPlace = Exctractor_Down;
-                else if (selectPrefab == highlightedExctractor_Left)
-                    FactoryToPlace = Exctractor_Left;
+                GameObject FactoryToPlace = salmonExctractor_Up;
+
+                if (fishType == 1)
+                {
+                    if (selectPrefab == salmonHighlightedExctractor_Up)
+                        FactoryToPlace = salmonExctractor_Up;
+                    else if (selectPrefab == salmonHighlightedExctractor_Right)
+                        FactoryToPlace = salmonExctractor_Right;
+                    else if (selectPrefab == salmonHighlightedExctractor_Down)
+                        FactoryToPlace = salmonExctractor_Down;
+                    else if (selectPrefab == salmonHighlightedExctractor_Left)
+                        FactoryToPlace = salmonExctractor_Left;
+                }
+                else if (fishType == 2)
+                {
+                    if (selectPrefab == tunaHighlightedExctractor_Up)
+                        FactoryToPlace = tunaExctractor_Up;
+                    else if (selectPrefab == tunaHighlightedExctractor_Right)
+                        FactoryToPlace = tunaExctractor_Right;
+                    else if (selectPrefab == tunaHighlightedExctractor_Down)
+                        FactoryToPlace = tunaExctractor_Down;
+                    else if (selectPrefab == tunaHighlightedExctractor_Left)
+                        FactoryToPlace = tunaExctractor_Left;
+                }
 
                 Destroy(selectedObject);
                 GameObject Factory = Instantiate(FactoryToPlace, new Vector3(hitPoint.x, 0f, hitPoint.y), Quaternion.identity, gameObject.transform);
@@ -108,7 +128,7 @@ public class PlaceMachine : MonoBehaviour
                 factoryPos.Add(new Vector2(Factory.transform.position.x, Factory.transform.position.z));
             }
         }
-        if(IsMouseOverUi())
+        if (IsMouseOverUi())
             Destroy(selectedObject);
         if (Physics.Raycast(ray, out RayHit))
         {
@@ -128,14 +148,28 @@ public class PlaceMachine : MonoBehaviour
 
     public void Rotate()
     {
-        if (selectPrefab == highlightedExctractor_Up)
-            selectPrefab = highlightedExctractor_Right;
-        else if (selectPrefab == highlightedExctractor_Right)
-            selectPrefab = highlightedExctractor_Down;
-        else if (selectPrefab == highlightedExctractor_Down)
-            selectPrefab = highlightedExctractor_Left;
-        else if (selectPrefab == highlightedExctractor_Left)
-            selectPrefab = highlightedExctractor_Up;
+        if (fishType == 1)
+        {
+            if (selectPrefab == salmonHighlightedExctractor_Up)
+                selectPrefab = salmonExctractor_Right;
+            else if (selectPrefab == salmonExctractor_Right)
+                selectPrefab = salmonExctractor_Down;
+            else if (selectPrefab == salmonExctractor_Down)
+                selectPrefab = salmonExctractor_Left;
+            else if (selectPrefab == salmonExctractor_Left)
+                selectPrefab = salmonHighlightedExctractor_Up;
+        }
+        else if (fishType == 2)
+        {
+            if (selectPrefab == tunaHighlightedExctractor_Up)
+                selectPrefab = tunaHighlightedExctractor_Right;
+            else if (selectPrefab == tunaHighlightedExctractor_Right)
+                selectPrefab = tunaHighlightedExctractor_Down;
+            else if (selectPrefab == tunaHighlightedExctractor_Down)
+                selectPrefab = tunaHighlightedExctractor_Left;
+            else if (selectPrefab == tunaHighlightedExctractor_Left)
+                selectPrefab = tunaHighlightedExctractor_Up;
+        }
         Destroy(selectedObject);
         selectedPos = Vector2.zero;
     }

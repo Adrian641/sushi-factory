@@ -13,6 +13,7 @@ TagManager:
   - Coral
   - Undefined
   - Item
+  - Fish
   layers:
   - Default
   - TransparentFX

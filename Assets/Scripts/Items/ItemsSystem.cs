@@ -78,13 +78,13 @@ public class ItemsSystem : MonoBehaviour
                 {
                     int orientation = GetType(BeltType.name);
                     if (orientation == 1)
-                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + Vector2.up;
+                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + (Vector2.up / 2);
                     else if (orientation == 2)
-                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + Vector2.down;
+                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + (Vector2.down / 2);
                     else if (orientation == 3)
-                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + Vector2.left;
+                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + (Vector2.left / 2);
                     else if (orientation == 4)
-                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + Vector2.right;
+                        beltPos[amountOfPos - 1] = GetPos(BeltPos.name) + (Vector2.right / 2);
                 }
             }
 
@@ -102,16 +102,6 @@ public class ItemsSystem : MonoBehaviour
                     ConveyorBeltItem beltItem = items[i];
                     Transform item = items[i].item;
 
-                    //bool isOnBelt = false;
-                    //RaycastHit[] RayHit = Physics.RaycastAll(new Vector3(item.position.x, 10f, item.position.z), Vector3.down, 20f);
-                    //for (int j = 0; j < RayHit.Length; j++)
-                    //{
-                    //    Debug.Log(item.position);
-                    //    if (RayHit[i].collider.CompareTag("Belt"))
-                    //    {
-                    //        isOnBelt = true;
-                    //    }
-                    //}
                     if (item == null)
                     {
                         items.Remove(items[i]);
