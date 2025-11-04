@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9016970842304487788}
   - component: {fileID: 8314180115389768844}
   - component: {fileID: -6096567518753078443}
+  - component: {fileID: -7010507823172326502}
   m_Layer: 6
   m_Name: 2
   m_TagString: Belt
@@ -106,3 +107,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 0.65, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &-7010507823172326502
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8115703481879560809}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43210d23144c6384ca935b75dc3ce85a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

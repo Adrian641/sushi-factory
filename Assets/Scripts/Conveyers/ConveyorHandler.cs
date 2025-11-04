@@ -38,6 +38,8 @@ public class ConveyorHandler : MonoBehaviour
     public GameObject PrefabBelt_Right_Up;
     public GameObject PrefabBelt_Right_Down;
 
+    public GameObject ConveyorBeltsGroup;
+
     void Start()
     {
         conveyorBelts = this.transform;
@@ -152,7 +154,7 @@ public class ConveyorHandler : MonoBehaviour
             Transform beltsTransform = conveyorGroupX.transform.GetChild(conveyorGroupX.childCount - 1);
             GameObject belt = beltsTransform.gameObject;
 
-            GameObject NewConveyorGroupX = new GameObject($"conveyorGroup{-1}");
+            GameObject NewConveyorGroupX = Instantiate(ConveyorBeltsGroup);
             NewConveyorGroupX.transform.parent = this.transform;
 
             bool inCopyMode = false;
@@ -299,9 +301,10 @@ public class ConveyorHandler : MonoBehaviour
         }
         for (int i = 0; i < allType.Length - 1; i++)
         {
+
             if (allType[i] != allType[i + 1] && allType[i] / 10 == 0 && allType[i + 1] / 10 == 0)
             {
-                newType = allType[i + 1] * 10 + allType[i];
+                newType = allType[i] * 10 + allType[i + 1];
 
                 if (newType / 10 == 1 && array[i] + Vector2.up != array[i + 1])
                     switchCorners = true;
@@ -314,15 +317,15 @@ public class ConveyorHandler : MonoBehaviour
 
                 if (switchCorners)
                 {
-                    Transform pos = group.transform.GetChild(i + 1);
-                    Transform type = pos.transform.GetChild(0);
-                    ChangeIntoEgde(newType, type, array[i + 1]);
-                }
-                else
-                {
                     Transform pos = group.transform.GetChild(i);
                     Transform type = pos.transform.GetChild(0);
                     ChangeIntoEgde(newType, type, array[i]);
+                }
+                else
+                {
+                    Transform pos = group.transform.GetChild(i + 1);
+                    Transform type = pos.transform.GetChild(0);
+                    ChangeIntoEgde(newType, type, array[i + 1]);
                 }
             }
         }

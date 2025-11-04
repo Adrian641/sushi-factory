@@ -17,7 +17,7 @@ public class CreateGrid : MonoBehaviour
         {
             for (int j = 0; j < gridSizeY; j++)
             {
-                Quaternion rotation = Quaternion.Euler(90f, 0, 0);
+                Quaternion rotation = Quaternion.Euler(0f, 0, 0);
 
                 if (i % 2 == 0)
                 {
@@ -30,9 +30,9 @@ public class CreateGrid : MonoBehaviour
                 else
                 {
                     if (j % 2 == 0)
-                        Instantiate(tile2, new Vector3(j, -0.02f, i), rotation, Grid.transform);
+                        Instantiate(tile2, new Vector3(j, -0.01f, i), rotation, Grid.transform);
                     else
-                        Instantiate(tile1, new Vector3(j, -0.02f, i), rotation, Grid.transform);
+                        Instantiate(tile1, new Vector3(j, -0.01f, i), rotation, Grid.transform);
                 }
             }
         }

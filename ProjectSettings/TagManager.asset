@@ -6,6 +6,14 @@ TagManager:
   tags:
   - Audio
   - Belt
+  - Algea
+  - Tile
+  - Factory
+  - Green
+  - Coral
+  - Undefined
+  - Item
+  - Fish
   layers:
   - Default
   - TransparentFX
@@ -14,8 +22,8 @@ TagManager:
   - Water
   - UI
   - BeltLayer
-  - 
-  - 
+  - Factory
+  - PostProcess
   - 
   - 
   - 

@@ -8,6 +8,8 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private float fieldOfViewMax = 80f;
     [SerializeField] private float fieldOfViewMin = 30f;
+    [SerializeField] private Vector2 limitX = new Vector2(30f, 123f);
+    [SerializeField] private Vector2 limitZ = new Vector2(30f, 123f);
     private float targetFieldOfView = 60f;
 
     private void Update()
@@ -23,16 +25,21 @@ public class CameraSystem : MonoBehaviour
         float moveSpeed = 5f;
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
+        Vector3 clampedPos = transform.position;
+        clampedPos.x = Mathf.Clamp(clampedPos.x, limitX.x, limitX.y);
+        clampedPos.z = Mathf.Clamp(clampedPos.z, limitZ.x, limitZ.y);
+        transform.position = clampedPos;
+
         float rotateDirX = 0f;
         float rotateDirY = 0f;
-        float sensitivity = 20f;
+        float sensitivity = 15f;
         if (Input.GetKey(KeyCode.Mouse2))
         {
             rotateDirX += Input.GetAxis("Mouse X") * sensitivity;
             //Debug.Log(rotateDirX);
 
             rotateDirY += Input.GetAxis("Mouse Y") * sensitivity;
-            Debug.Log(rotateDirY);
+            //Debug.Log(rotateDirY);
         }
 
         transform.Rotate(Vector3.up, rotateDirX * sensitivity * Time.deltaTime);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutorialBox : MonoBehaviour
 {
@@ -23,9 +24,10 @@ public class TutorialBox : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("enter");
+
             if (textComponent.text == lines[index])
             {
                 NextLine();

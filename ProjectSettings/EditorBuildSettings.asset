@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: bcd3f6dc55dcef9419df78b637cecd28
   - enabled: 1
-    path: Assets/Scenes/SushiFactory.unity
-    guid: e7a0b751d2581a346b51077cb24377e9
+    path: Assets/Scenes/AdriansMoreFilledAsylum.unity
+    guid: c4219d54bd0f49e439725c1581129745
   m_configObjects: {}
